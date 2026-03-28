@@ -50,7 +50,14 @@ Therefore:
 ---
 
 ## Prompt Drift Signal (PDS)
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/d35c09b9-8f9b-46ad-a8a8-d30d73768e4c" />
+Prompt Deviation Score (PDS) is computed as a composite signal incorporating:
 
+- Semantic Deviation — distance between current system objective and baseline objective  
+- Behavioral Deviation — divergence between expected and observed action trajectories  
+- Deviation Velocity (Curvature) — rate of change in deviation over time  
+
+PDS is evaluated continuously and mapped to threshold bands for control response activation.
 PDS measures deviation between:
 - Authenticated objective  
 - Real-time system behavior  
