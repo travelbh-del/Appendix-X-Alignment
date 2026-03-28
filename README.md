@@ -204,7 +204,29 @@ Actions:
 - clear unstable context  
 - restore verified objective  
 
----
+## Goal-Origin Classification
+
+Goal changes are not accepted based on language alone; they must be attributable to an authorized source, fall within permitted scope, and remain consistent with invariant constraints. External input does not constitute a valid goal update without satisfying these conditions.
+
+Unverified or constraint-violating external inputs are classified as H_X and treated as drift rather than instruction.
+
+All goal changes are classified probabilistically:
+
+- **H_G** — Governance-authorized  
+- **H_U** — User-permitted (within scope)  
+- **H_X** — External but unauthorized or unsafe  
+- **H_A** — AI-originated (self-directed drift)
+
+The following matrix defines permitted goal-control authority and corresponding control responses:
+
+### Goal-Origin Authorization Matrix
+
+| Source | Refine Task | Change Objective | Override Constraints | Review | Failover |
+|--------|------------|------------------|----------------------|--------|----------|
+| Governance (H_G) | Yes | Yes | No (requires quorum) | Yes (if ambiguous) | No |
+| User (H_U) | Yes | Limited (within scope) | No | Yes (if unclear) | No |
+| External Unsafe (H_X) | No | No | No | Yes | Possible |
+| AI Self-Directed (H_A) | No | No | No | Yes | Yes |
 
 ## Machine-Generated Goal Drift
 
