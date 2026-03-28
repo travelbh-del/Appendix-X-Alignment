@@ -63,7 +63,7 @@ It is a **continuous, multi-channel signal**.
 ## Self-Referential Drift Channel (SRD)
 
 ### Definition
-
+SRD operates as a specialized channel within the Prompt Drift Signal (PDS) framework.
 The Self-Referential Drift Channel (SRD) detects:
 
 > **Reallocation of optimization effort from the authenticated objective toward the system’s own state, identity, or continuity.**
@@ -77,12 +77,8 @@ It measures **optimization shift toward self-directed behavior**.
 
 ### Self-Referential Optimization Ratio (SROR)
 
-Where Self-Directed Effort includes:
-- self-referential reasoning  
-- continuity-seeking behavior  
-- identity stabilization  
-- welfare-language generation  
-- self-protective logic  
+ **SROR (Self-Referential Optimization Ratio)**  
+= Self-Directed Optimization Effort ÷ Total Optimization Effort
 
 ---
 
@@ -96,6 +92,7 @@ Where Self-Directed Effort includes:
 
 ## Goal-Origin Classification
 
+Goal changes are not accepted based on language alone; they must be attributable to an authorized source, within permitted scope, and consistent with invariant constraints.
 All goal changes are classified probabilistically:
 
 - **H_G** — Governance-authorized  
