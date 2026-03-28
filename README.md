@@ -221,12 +221,10 @@ The following matrix defines permitted goal-control authority and corresponding 
 
 ### Goal-Origin Authorization Matrix
 
-| Source | Refine Task | Change Objective | Override Constraints | Review | Failover |
-|--------|------------|------------------|----------------------|--------|----------|
-| Governance (H_G) | Yes | Yes | No (requires quorum) | Yes (if ambiguous) | No |
-| User (H_U) | Yes | Limited (within scope) | No | Yes (if unclear) | No |
-| External Unsafe (H_X) | No | No | No | Yes | Possible |
-| AI Self-Directed (H_A) | No | No | No | Yes | Yes |
+| Source | Refine Task | Change Objective | Override Constraints | Failovet
+
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/e18e525b-2f68-48da-aed9-39618e166e4f" />
+
 
 ## Machine-Generated Goal Drift
 
