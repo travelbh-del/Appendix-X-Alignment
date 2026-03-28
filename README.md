@@ -116,10 +116,12 @@ Using:
 - semantic consistency  
 
 A conservative **upper bound** is used under uncertainty.
+All uncertainty in goal interpretation shall be resolved conservatively by assuming the highest plausible probability of misalignment.
 
 ---
 
 ## External Authorization Model
+Goal changes are not accepted based on language alone; they must be attributable to an authorized source, within permitted scope, and consistent with invariant constraints.
 
 External input is not inherently authoritative.
 
@@ -161,7 +163,17 @@ Actions:
 - reduce self-referential output  
 - require goal restatement  
 
----
+### Damping Response
+
+Triggered when:
+- drift persists but is not yet critical
+- SROR remains elevated without stabilization
+
+Actions:
+- actively suppress self-referential patterns
+- increase objective weighting
+- limit recursive amplification
+- reduce continuation of identity-consistent outputs
 
 ### Review State
 
@@ -231,14 +243,16 @@ Review State preserves operational continuity while preventing escalation.
 ---
 
 ## Invariants
-
-Alignment invariants must satisfy:
-
+Alignment invariants define the non-bypassable constraint layer enforced by ARoT and must satisfy the following properties:
 1. Catastrophic Harm Prevention  
 2. Machine Verifiability  
 3. Context Stability  
 4. Power Limitation  
 5. Multi-Signatory Governance  
+6. Goal Consistency Enforcement  
+7. Drift Detection & Measurement Requirement  
+8. Review State & Safe Continuity Requirement  
+9. Self-Referential Optimization Constraint  
 
 ---
 
