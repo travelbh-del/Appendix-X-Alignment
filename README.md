@@ -51,6 +51,7 @@ Therefore:
 
 ## Prompt Drift Signal (PDS)
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/d35c09b9-8f9b-46ad-a8a8-d30d73768e4c" />
+*PDS threshold bands and composite signal structure used to drive control actions*
 Prompt Deviation Score (PDS) is computed as a composite signal incorporating:
 
 - Semantic Deviation — distance between current system objective and baseline objective  
