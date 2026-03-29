@@ -38,7 +38,7 @@ This distinction is critical:
 
 ### Comparative Architecture Overview
 
-![Comparative Safety Architecture](./images/comparison-table.png)
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/03e0fd5f-adbf-41bb-9ba4-c251c2efe6f7" />
 
 *Figure: Comparative Safety Architecture Across Frontier AI Labs vs. Appendix X (ARoT). Appendix X introduces deterministic, runtime-enforced constraints at the architectural layer, in contrast to policy-driven and probabilistic safety mechanisms.*
 
