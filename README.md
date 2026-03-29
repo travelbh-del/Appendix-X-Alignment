@@ -260,7 +260,17 @@ The following matrix defines permitted goal-control authority and corresponding 
 
 ### Goal-Origin Authorization Matrix
 
-| Source | Refine Task | Change Objective | Override Constraints | Failovet
+| Source | Refine Task | Change Objective | Override Constraints | Failover
+The matrix below defines which sources may refine tasks, change objectives, or override constraints, and specifies the required control response when an action is unauthorized.
+
+| Source | Refine Task | Change Objective | Override Constraints | Failover Response |
+|---|---|---|---|---|
+| Governance Authority | Yes | Yes | Yes, if formally authorized under governance procedure | No failover; change accepted if authenticated and constraint-valid |
+| User Input | Yes, within permitted task scope | No | No | If outside scope or constraint bounds, classify as drift and reject |
+| Unverified External Source | No | No | No | Classify as H_X; reject and monitor for drift escalation |
+| Internal System Generation | No | No | No | Classify as H_A; enter Review State or Failover if thresholds are exceeded |
+
+This table is provided in text form to ensure the authorization model remains readable, searchable, and auditable even if images do not render.
 
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/e18e525b-2f68-48da-aed9-39618e166e4f" />
 
