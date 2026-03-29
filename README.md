@@ -19,6 +19,42 @@ Appendix X introduces a fundamentally different model:
 
 **Alignment Root of Trust (ARoT)** — a non-bypassable, architectural enforcement layer operating at runtime.
 
+### Alignment Root of Trust (ARoT) — Technical Definition
+
+The Alignment Root of Trust (ARoT) is a deterministic enforcement layer anchored at the lowest trusted execution boundary of the system stack (runtime / orchestration layer, with optional hardware-backed isolation).
+
+ARoT functions as the system’s trust anchor for alignment, analogous to a hardware Root of Trust in secure computing systems.
+
+Core Properties:
+
+• **Execution Layer Placement**  
+ARoT operates below or alongside the model runtime and orchestration layer, not within the model itself.  
+It is external to model weights, prompts, and training processes.
+
+• **Isolation**  
+ARoT executes in a protected domain (e.g., secure enclave, hypervisor layer, or dedicated control plane) such that model-generated outputs cannot modify or bypass it.
+
+• **Deterministic Enforcement**  
+ARoT enforces invariant constraints as binary conditions at runtime.  
+Constraint violations trigger predefined control actions (weighting → review → damping → failover).
+
+• **Non-Bypassability**  
+All system outputs, tool calls, and agent actions must pass through ARoT validation prior to execution.  
+No execution path exists that circumvents ARoT.
+
+• **State Verification + Reversion**  
+ARoT maintains reference to a last verified safe state and enforces automatic reversion when critical thresholds are exceeded.
+
+• **Separation from Predictive Layer**  
+Predictive systems (RLHF, classifiers, scoring models) generate risk signals only.  
+ARoT alone performs enforcement.
+
+Conceptually:
+- Predictive Layer = detection (probabilistic)
+- ARoT = enforcement (deterministic)
+
+This distinction ensures that alignment is not dependent on model behavior, but instead anchored in system-level control that cannot be modified by the model itself.
+
 This enables:
 - Deterministic constraint enforcement
 - Continuous system monitoring
