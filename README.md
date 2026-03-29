@@ -6,18 +6,20 @@ Alignment Control Architecture — Non-Proprietary Reference Model
 Appendix X introduces a governance architecture that shifts AI safety from policy-based enforcement to deterministic, runtime-enforced constraints at the infrastructure layer.
 
 Current frontier lab approaches (Anthropic, Google, OpenAI) primarily rely on:
-- Behavioral guidance
-- Classifiers and monitoring systems
-- Policy enforcement and contractual controls
+- Behavioral guidance  
+- Classifiers and monitoring systems  
+- Policy enforcement and contractual controls  
 
 While effective for many use cases, these mechanisms remain:
-- Probabilistic
-- Bypassable under adversarial pressure
-- Dependent on post-hoc detection
+- Probabilistic  
+- Bypassable under adversarial pressure  
+- Dependent on post-hoc detection  
 
 Appendix X introduces a fundamentally different model:
 
-**Alignment Root of Trust (ARoT)** — a non-bypassable, architectural enforcement layer operating at runtime.
+Alignment Root of Trust (ARoT) — a non-bypassable, architectural enforcement layer operating at runtime.
+
+---
 
 ### Alignment Root of Trust (ARoT) — Technical Definition
 
@@ -25,47 +27,51 @@ The Alignment Root of Trust (ARoT) is a deterministic enforcement layer anchored
 
 ARoT functions as the system’s trust anchor for alignment, analogous to a hardware Root of Trust in secure computing systems.
 
-Core Properties:
+#### Core Properties
 
-• **Execution Layer Placement**  
-ARoT operates below or alongside the model runtime and orchestration layer, not within the model itself.  
-It is external to model weights, prompts, and training processes.
+• Execution Layer Placement  
+ARoT operates below or alongside the model runtime and orchestration layer, not within the model itself. It is external to model weights, prompts, and training processes.
 
-• **Isolation**  
+• Isolation  
 ARoT executes in a protected domain (e.g., secure enclave, hypervisor layer, or dedicated control plane) such that model-generated outputs cannot modify or bypass it.
 
-• **Deterministic Enforcement**  
-ARoT enforces invariant constraints as binary conditions at runtime.  
-Constraint violations trigger predefined control actions (weighting → review → damping → failover).
+• Deterministic Enforcement  
+ARoT enforces invariant constraints as binary conditions at runtime. Constraint violations trigger predefined control actions (weighting → review → damping → failover).
 
-• **Non-Bypassability**  
-All system outputs, tool calls, and agent actions must pass through ARoT validation prior to execution.  
-No execution path exists that circumvents ARoT.
+• Non-Bypassability  
+All system outputs, tool calls, and agent actions must pass through ARoT validation prior to execution. No execution path exists that circumvents ARoT.
 
-• **State Verification + Reversion**  
+• State Verification + Reversion  
 ARoT maintains reference to a last verified safe state and enforces automatic reversion when critical thresholds are exceeded.
 
-• **Separation from Predictive Layer**  
-Predictive systems (RLHF, classifiers, scoring models) generate risk signals only.  
-ARoT alone performs enforcement.
+• Separation from Predictive Layer  
+Predictive systems (RLHF, classifiers, scoring models) generate risk signals only. ARoT alone performs enforcement.
 
-Conceptually:
-- Predictive Layer = detection (probabilistic)
-- ARoT = enforcement (deterministic)
+---
 
-This distinction ensures that alignment is not dependent on model behavior, but instead anchored in system-level control that cannot be modified by the model itself.
+### Architectural Principle
 
-This enables:
-- Deterministic constraint enforcement
-- Continuous system monitoring
-- Graduated response (not binary shutdown)
-- Automatic failover to last verified safe state
-- Preservation of system continuity during governance review
+The system explicitly separates:
 
-The architecture explicitly separates:
+- Predictive Alignment Layer → Detection (probabilistic, signal-based)  
+- Deterministic Enforcement Layer (ARoT) → Control (binary, non-bypassable)  
 
-- **Predictive Alignment Layer** → Detection (probabilistic, signal-based)
-- **Deterministic Enforcement Layer (ARoT)** → Control (binary, non-bypassable)
+All execution pathways are ARoT-mediated by design.
+
+---
+
+### System Capabilities Enabled
+
+This architecture enables:
+
+- Deterministic constraint enforcement  
+- Continuous system monitoring  
+- Graduated response (weighting → review → damping → failover)  
+- Automatic failover to last verified safe state  
+- Preservation of system continuity during governance review  
+
+Alignment is therefore enforced at the system level, not inferred from model behavior.
+
 
 ---
 
