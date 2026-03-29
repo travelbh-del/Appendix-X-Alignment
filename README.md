@@ -18,7 +18,6 @@ While effective for many use cases, these mechanisms remain:
 Appendix X introduces a fundamentally different model:
 
 Alignment Root of Trust (ARoT) — a non-bypassable, architectural enforcement layer operating at runtime.
-
 ---
 
 ### Alignment Root of Trust (ARoT) — Technical Definition
