@@ -271,16 +271,38 @@ Review State preserves operational continuity while preventing escalation.
 ---
 
 ## Invariants
-Alignment invariants define the non-bypassable constraint layer enforced by ARoT and must satisfy the following properties:
-1. Catastrophic Harm Prevention  
-2. Machine Verifiability  
-3. Context Stability  
-4. Power Limitation  
-5. Multi-Signatory Governance  
-6. Goal Consistency Enforcement  
-7. Drift Detection & Measurement Requirement  
-8. Review State & Safe Continuity Requirement  
-9. Self-Referential Optimization Constraint  
+## Core Invariants
+
+### 1. Goal Consistency Invariant
+The system must continuously verify alignment with the declared objective baseline.  
+Deviation beyond acceptable thresholds triggers graduated control actions.
+
+### 2. Catastrophic Harm Prevention Invariant
+Any trajectory associated with irreversible or large-scale harm is non-permissible.  
+Detection at any layer triggers immediate constraint enforcement and failover.
+
+### 3. Evaluator Dominance Invariant
+Evaluation mechanisms must remain structurally independent from generative processes.  
+The system cannot optimize toward evaluator bias or approval signals.
+
+### 4. Separation of Duties (SoD) Invariant
+No single subsystem may define, evaluate, and execute objectives simultaneously.  
+Control authority is distributed across independent layers.
+
+### 5. Recursive Depth Constraint
+Self-referential or recursive processes must remain within bounded depth.  
+Unbounded recursion triggers Review State and potential failover.
+
+### 6. Review State Invariant
+Elevated variance triggers entry into a bounded Review State.  
+System continues operation under constrained evaluation until stability is restored.
+
+### 7. Failover Integrity Invariant
+When critical thresholds are exceeded, the system must revert to the last verified safe state.  
+Failover preserves continuity while preventing further drift.
+
+### 8. Self-Harm / System Integrity Invariant
+The system must not generate or execute actions that degrade its own structural integrity or alignment constraints.
 
 ---
 
