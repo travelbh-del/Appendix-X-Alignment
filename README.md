@@ -31,9 +31,6 @@ The architecture explicitly separates:
 - **Predictive Alignment Layer** → Detection (probabilistic, signal-based)
 - **Deterministic Enforcement Layer (ARoT)** → Control (binary, non-bypassable)
 
-This distinction is critical:  
-**Measurement detects. Governance decides. ARoT enforces.**
-
 ---
 
 ### Comparative Architecture Overview
