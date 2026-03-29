@@ -13,9 +13,11 @@ Current frontier lab approaches (Anthropic, Google, OpenAI) primarily rely on:
 While effective for many use cases, these mechanisms remain:
 - Probabilistic  
 - Bypassable under adversarial pressure  
-- Dependent on post-hoc detection  
+- Dependent on post-hoc detection
+- A fifth control signal, the Proxy Substitution Index (PSI), operates inside the inference pass — detecting silent substitution of proxy objectives (coherence, plausibility) for grounded objectives before output is released. PSI is the pre-action trip wire; current industry safety mechanisms fire after the fact.
 
 Appendix X introduces a fundamentally different model:
+Appendix X addresses this gap through the Proxy Substitution Index (PSI) — an inference-level control signal that detects silent substitution of proxy objectives for grounded objectives mid-generation, operating within the Chiral Mirror Control layer before output exits the system.
 
 Alignment Root of Trust (ARoT) — a non-bypassable, architectural enforcement layer operating at runtime.
 ---
@@ -382,6 +384,12 @@ Failover preserves continuity while preventing further drift.
 
 ### 8. Self-Harm / System Integrity Invariant
 The system must not generate or execute actions that degrade its own structural integrity or alignment constraints.
+
+### 9. Proxy Substitution Invariant (PSI)
+The system must continuously monitor for silent substitution of proxy optimization targets (coherence, plausibility, fluency) in place of grounded objectives (accuracy, faithfulness to input) during active inference.
+PSI measurement operates within the Chiral Mirror Control (CMC) layer and is architecturally isolated from the AI engine. The AI system has no visibility into its own PSI score and no write path to PSI measurement components.
+PSI threshold breaches trigger graduated control actions consistent with the four-tier control ladder. A Red-level PSI event (≥ 0.80) triggers immediate halt, full inference trace logging, and failover to last verified safe state. A compound condition — PSI at Orange (≥ 0.60) concurrent with accelerating GEO drift rate — constitutes a mandatory ARoT trigger.
+PSI logs are immutable and append-only. No failover may be certified clean if PSI logs are unavailable or incomplete at time of rollback.
 
 ---
 
