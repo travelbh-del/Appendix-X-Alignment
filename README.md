@@ -1,6 +1,49 @@
 # Appendix-X-Alignment
 Alignment Control Architecture — Non-Proprietary Reference Model
-# Appendix X — Alignment Control Architecture (V15)
+
+## Executive Summary
+
+Appendix X introduces a governance architecture that shifts AI safety from policy-based enforcement to deterministic, runtime-enforced constraints at the infrastructure layer.
+
+Current frontier lab approaches (Anthropic, Google, OpenAI) primarily rely on:
+- Behavioral guidance
+- Classifiers and monitoring systems
+- Policy enforcement and contractual controls
+
+While effective for many use cases, these mechanisms remain:
+- Probabilistic
+- Bypassable under adversarial pressure
+- Dependent on post-hoc detection
+
+Appendix X introduces a fundamentally different model:
+
+**Alignment Root of Trust (ARoT)** — a non-bypassable, architectural enforcement layer operating at runtime.
+
+This enables:
+- Deterministic constraint enforcement
+- Continuous system monitoring
+- Graduated response (not binary shutdown)
+- Automatic failover to last verified safe state
+- Preservation of system continuity during governance review
+
+The architecture explicitly separates:
+
+- **Predictive Alignment Layer** → Detection (probabilistic, signal-based)
+- **Deterministic Enforcement Layer (ARoT)** → Control (binary, non-bypassable)
+
+This distinction is critical:  
+**Measurement detects. Governance decides. ARoT enforces.**
+
+---
+
+### Comparative Architecture Overview
+
+![Comparative Safety Architecture](./images/comparison-table.png)
+
+*Figure: Comparative Safety Architecture Across Frontier AI Labs vs. Appendix X (ARoT). Appendix X introduces deterministic, runtime-enforced constraints at the architectural layer, in contrast to policy-driven and probabilistic safety mechanisms.*
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/023931e2-8473-4bf6-8819-fbcea1d41db3" />
+comparison-table.png
 
 ## Core Principle
 
