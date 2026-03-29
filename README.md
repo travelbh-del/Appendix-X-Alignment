@@ -141,18 +141,6 @@ It measures **optimization shift toward self-directed behavior**.
 
 ---
 
-## Goal-Origin Classification
-
-Goal changes are not accepted based on language alone; they must be attributable to an authorized source, within permitted scope, and consistent with invariant constraints.
-All goal changes are classified probabilistically:
-
-- **H_G** — Governance-authorized  
-- **H_U** — User-permitted (within scope)  
-- **H_X** — External but unauthorized or unsafe  
-- **H_A** — AI-originated (self-directed drift)
-
----
-
 ## Probabilistic Evaluation
 
 The system estimates:
