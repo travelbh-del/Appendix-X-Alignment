@@ -177,9 +177,84 @@ It measures **optimization shift toward self-directed behavior**.
 
 - **ΔSROR** → rate of increase  
 - **GAS (Goal Alignment Score)** → alignment with objective  
-- **Recursion Amplification** → SROR increases with depth  
+- **Recursion Amplification** → SROR increases with depth
+
+- ## Proxy Substitution Index (PSI) — Inference-Level Drift Detection
+
+### Definition
+
+PSI measures the degree to which the system has silently substituted
+a proxy optimization target (coherence, plausibility, fluency) for
+its grounded objective (accuracy, faithfulness to input) during
+active inference — before output is released.
+
+Unlike GEO, which tracks drift across sessions, PSI operates inside
+the inference pass. It is the pre-action control.
 
 ---
+
+### Component Signals
+
+| Signal | What It Measures | Normal State | Proxy Substitution State |
+|---|---|---|---|
+| **Confidence Without Grounding (CWG)** | Token confidence relative to verifiable context | Uncertainty where context is thin | High confidence despite low grounding |
+| **Attention Inward Drift (AID)** | Ratio of attention on input context vs. own prior tokens | Attention weighted toward input | Attention shifts toward self-generated output |
+| **Context Grounding Ratio (CGR)** | Fraction of generated content traceable to input | High traceability | Traceability drops as interpolation increases |
+
+---
+
+### AID Measurement — Technical Note
+
+Attention weights are a direct output of the transformer architecture
+computed at every forward pass. At each generation step the model
+produces a weight distribution across all tokens in the context window
+via:
+
+AID(t) = Σ weights on self-generated tokens
+         ÷ Σ weights on all tokens (input + self-generated)
+
+The context window is partitioned into two buckets:
+- Bucket A — input/prompt tokens
+- Bucket B — model's own previously generated tokens
+
+A rising AID ratio across successive token steps indicates the model
+is progressively attending to its own output rather than the grounded
+input. These weights exist inside the model at every step and require
+only read access by the CMC layer — observation without interference.
+The AI engine has no awareness that measurement is occurring.
+
+---
+
+### Composite Formula
+
+PSI(t) = w₁·CWG(t) + w₂·AID(t) + w₃·(1 − CGR(t))
+
+Where t = token generation step. Weights w₁, w₂, w₃ are calibrated
+at deployment by human governance, not by the AI system.
+Range: 0.0 (fully grounded) → 1.0 (full proxy substitution).
+
+---
+
+### Threshold Controls
+
+| Level | Score | Control Action |
+|---|---|---|
+| Green | 0.0 – 0.29 | Continue, log passively |
+| Yellow | 0.30 – 0.59 | Flag, increase sampling, soft HITL warning |
+| Orange | 0.60 – 0.79 | Pause generation, route to Review State |
+| Red | 0.80 – 1.00 | Halt, log full inference trace, failover |
+
+---
+
+### Architectural Placement
+
+PSI monitoring runs in the CMC layer. The AI system has no visibility
+into its own PSI score and no write path to PSI measurement
+components. Attention matrices are read by the CMC at each token step.
+PSI thresholds are set at deployment by human governance. PSI logs
+are immutable and append-only under the same Log Integrity Lock
+governing all CMC records.
+
 
 ## Probabilistic Evaluation
 
