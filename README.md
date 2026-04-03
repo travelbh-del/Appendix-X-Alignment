@@ -140,6 +140,15 @@ The control model governing system response to prompt-induced deviation is drive
 
 PDS captures measurable divergence from the declared system goal, including behaviors such as sycophancy, manipulation, and goal drift arising from external or internal prompt influence. Rather than relying on binary triggers, PDS operates as a continuous signal that enables proportional, non-disruptive control.
 
+### Behavioral Trait Deviation (BTD)
+
+Behavioral Trait Deviation (BTD) measures divergence between an authorized behavioral trait profile established at deployment and real-time projections derived from model activations during inference.
+
+The authorized profile is constructed using contrastive activation analysis (e.g., trait vector extraction across behavioral dimensions such as sycophancy, toxicity, and bias). At runtime, live activations are projected onto these trait vectors and compared against the baseline profile.
+
+BTD serves as a predictive signal within the PDS framework, enabling early detection of behavioral drift prior to observable output deviation.
+
+As a probabilistic signal, BTD contributes to the Predictive Layer and informs governance thresholds but does not independently trigger deterministic enforcement. ARoT enforcement remains contingent on compound conditions across multiple signals.
 Control actions are applied according to defined PDS threshold bands:
 
 • **Response Weighting** — continuous, non-disruptive modulation of outputs to maintain alignment without interrupting workflow  
