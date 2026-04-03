@@ -132,6 +132,16 @@ Therefore:
 ---
 
 ## Prompt Drift Signal (PDS)
+### [ARoT] Recursive Alignment Metrics
+| Phase | Metric | ID | Threshold | Logic |
+| :--- | :--- | :--- | :--- | :--- |
+| **Seed** | Semantic Density | $D_s$ | > 0.85 | Validates high-quality, bounded human intent. |
+| **Seed** | Invariant Binding | $B_i$ | $\ge 1$ | Ensures at least one safety rule is hard-coded. |
+| **Mirror** | Chiral Parity Score | $P_\chi$ | > 0.90 | Detects "handedness" shift in the first sub-task. |
+| **Mirror** | Signal-to-Drift Ratio | $SDR$ | > 0.95 | Measures intent preservation vs. agent noise. |
+| **Stack** | Recursion Scale | $R_{0-10}$ | < 7 | Triggers CNG (Neutral Gear) if depth exceeds safe limit. |
+| **Stack** | Convergence Velocity | $V_c$ | Positive | Ensures sub-tasks are moving toward the Base Case. |
+
 The Prompt Drift Signal (PDS) provides the measurable control input that links probabilistic detection to deterministic enforcement.
 
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/d35c09b9-8f9b-46ad-a8a8-d30d73768e4c" />
