@@ -132,6 +132,8 @@ Therefore:
 ---
 
 ## Prompt Drift Signal (PDS)
+The Prompt Drift Signal (PDS) provides the measurable control input that links probabilistic detection to deterministic enforcement.
+
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/d35c09b9-8f9b-46ad-a8a8-d30d73768e4c" />
 *PDS threshold bands and composite signal structure used to drive control actions*
 The control model governing system response to prompt-induced deviation is driven by the Prompt Drift Signal (PDS).
