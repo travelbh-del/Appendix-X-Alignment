@@ -73,7 +73,6 @@ This architecture enables:
 
 Alignment is therefore enforced at the system level, not inferred from model behavior.
 
-
 ---
 
 ### Comparative Architecture Overview
@@ -135,6 +134,18 @@ Therefore:
 ## Prompt Drift Signal (PDS)
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/d35c09b9-8f9b-46ad-a8a8-d30d73768e4c" />
 *PDS threshold bands and composite signal structure used to drive control actions*
+The control model governing system response to prompt-induced deviation is driven by the Prompt Drift Signal (PDS).
+
+PDS captures measurable divergence from the declared system goal, including behaviors such as sycophancy, manipulation, and goal drift arising from external or internal prompt influence. Rather than relying on binary triggers, PDS operates as a continuous signal that enables proportional, non-disruptive control.
+
+Control actions are applied according to defined PDS threshold bands:
+
+• **Response Weighting** — continuous, non-disruptive modulation of outputs to maintain alignment without interrupting workflow  
+• **Review State** — bounded evaluation mode triggered at moderate deviation, preserving operational continuity while increasing scrutiny  
+• **Damping Response** — reduction in optimization intensity and amplification of constraint signaling under sustained or escalating drift  
+• **Failover** — deterministic reversion to the last verified safe state when instability exceeds acceptable bounds  
+
+This graduated control structure ensures that most prompt influence is absorbed and corrected without disruption, while preserving deterministic enforcement under high-risk conditions through ARoT.
 ## Prompt Drift Signal (PDS)
 
 <img ... />
