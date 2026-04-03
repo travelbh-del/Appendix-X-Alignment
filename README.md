@@ -135,6 +135,26 @@ Therefore:
 ## Prompt Drift Signal (PDS)
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/d35c09b9-8f9b-46ad-a8a8-d30d73768e4c" />
 *PDS threshold bands and composite signal structure used to drive control actions*
+## Prompt Drift Signal (PDS)
+
+<img ... />
+
+*PDS threshold bands and composite signal structure used to drive control actions*
+
+⬇️ INSERT STARTS HERE ⬇️
+
+The following control model governs system response to measured prompt deviation:
+
+PDS captures prompt-induced behavioral drift, including effects such as sycophancy, manipulation, and deviation from the declared goal. Control actions are applied proportionally based on PDS threshold bands:
+
+• Response Weighting — continuous, non-disruptive biasing of outputs to maintain alignment  
+• Review State — bounded evaluation mode triggered at moderate deviation  
+• Damping Response — reduction of optimization intensity and increased constraint signaling  
+• Failover — automatic reversion to last verified safe state under critical instability  
+
+⬆️ INSERT ENDS HERE ⬆️
+
+Prompt Deviation Score (PDS) is a composite metric...
 
 ## Control Action Ladder
 Prompt Deviation Score (PDS) is computed as a composite signal incorporating:
