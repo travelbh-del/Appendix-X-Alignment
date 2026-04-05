@@ -639,7 +639,7 @@ Relationship to existing architecture:
 Guiding principle:
 A recursive chain that begins outside governance cannot be made safe inside it.
 
-###Invariant 11 — Cumulative Drift Integrity (CDI)
+### Invariant 11 — Cumulative Drift Integrity (CDI)
 Drift must be measured not only per step but across the full recursion chain as an accumulating integral.
 Formal statement:
 Let PDS(n) represent the Prompt Deviation Score at recursion depth n. The Cumulative Drift Integral is defined as:
