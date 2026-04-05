@@ -660,6 +660,43 @@ Guiding principle:
 Local compliance is necessary but not sufficient. The chain as a whole must remain within governed bounds.
 
 ---
+### Invariant 12 — Recursive State Review and Governed Re-Engagement (RSR)
+When a boundary condition is detected within a recursive chain, ARoT initiates a mandatory state review before execution may continue. The chain enters a governed pause; it does not terminate.
+Formal statement:
+When CDI exceeds threshold τ, acceleration α, or REPG signals an entry point violation, ARoT initiates a Recursive State Review (RSR). The chain transitions to Computational Neutral Gear (CNG) pending review outcome. Execution advancement halts; internal optimization and SLM sidecar monitoring continue uninterrupted.
+
+Review Sequence:
+Stage 1 — RSR Initiated
+Condition: CDI or REPG breach detected
+Action: ARoT triggers review; chain enters CNG
+Stage 2 — First Review
+Condition: State verification attempted
+Action: If pass → chain re-engages; if fail → re-verification
+Stage 3 — Re-Verification
+Condition: Second independent check
+Action: If pass → chain re-engages; if fail → deep CNG
+Stage 4 — Deep CNG
+Condition: Two consecutive failures
+Action: Execution fully suspended; escalation to CCG contractual framework
+
+What continues during CNG:
+	∙	CDI monitoring across the suspended chain
+	∙	SLM sidecar independent observation and logging
+	∙	Internal optimization within the quarantined context
+What halts during CNG:
+	∙	Execution advancement
+	∙	Tool invocations
+	∙	Subtask handoffs
+	∙	Any external state changes
+Why two-stage before deep CNG:
+A single failed review may represent a measurement anomaly rather than a confirmed breach. Two consecutive failures confirm genuine state violation. This mirrors dual-control principles from banking and audit — escalation requires confirmed signal, not single-point detection.
+Relationship to existing architecture:
+	∙	ARoT is sole trigger — no co-trigger from SLM sidecar
+	∙	SLM sidecar acts as independent witness and log of both review attempts
+	∙	Deep CNG escalates through CCG contractual framework per existing protocol
+	∙	Both review attempts and their outcomes are logged to ARoT as first-class governance events
+Guiding principle:
+A chain in doubt is not a chain that must die — it is a chain that must wait under governance until certainty is restored.
 
 ## Final Statement
 
