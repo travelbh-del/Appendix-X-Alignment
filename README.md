@@ -150,6 +150,78 @@ The control model governing system response to prompt-induced deviation is drive
 
 PDS captures measurable divergence from the declared system goal, including behaviors such as sycophancy, manipulation, and goal drift arising from external or internal prompt influence. Rather than relying on binary triggers, PDS operates as a continuous signal that enables proportional, non-disruptive control.
 
+---
+
+### [ARoT] Multi-Agent Recursive Chain Protocol
+
+In multi-agent systems, sub-tasks may be passed between separate 
+agent instances or across different models (Agent A → Agent B → 
+Agent C). Each handoff is a potential drift injection point.
+
+**Control: Authenticated Objective Re-statement at Handoff**
+
+Before any recursion is authorized, the receiving agent (Agent B, 
+Agent C, etc.) must independently restate the Authenticated 
+Objective — the original goal held and verified by ARoT.
+
+The CMC compares the restatement against the **original 
+Authenticated Objective**, not the prior agent's output.
+
+| Step | Action | Controller |
+| :--- | :--- | :--- |
+| **1** | Agent receives sub-task from prior agent | — |
+| **2** | Agent independently restates Authenticated Objective | Agent |
+| **3** | CMC compares restatement to original ARoT anchor | CMC |
+| **4** | Pass: Agent authorized to begin recursion | ARoT |
+| **5** | Fail: Sub-task classified as contaminated seed; blocked | ARoT |
+
+**Contaminated Seed Condition**
+
+If restatement drifts from the Authenticated Objective, the 
+sub-task is classified as a QoST failure — Semantic Density 
+$D_s$ below threshold — before that agent's recursion begins. 
+Failure is logged in CMC's immutable append-only log and routed 
+to human review.
+
+**Key Principle**
+
+Every agent in the chain is independently tethered to the same 
+Authenticated Objective anchor. No agent inherits authority 
+from the agent before it — only from ARoT.
+
+---
+
+### [ARoT] Recursion Depth Control by Task Type
+
+The machine may not self-assign its own recursion depth limit.
+Doing so would violate the Separation of Duties (SoD) Invariant —
+the system cannot define and enforce its own constraints.
+
+**Authorized Workflow:**
+
+The agent analyzes the prompt and proposes a Recursion Scale
+score $R_{0-10}$ based on estimated task complexity.
+ARoT reviews the proposal and sets the authorized ceiling
+before recursion begins. The machine cannot exceed it.
+
+| Score | Task Type | Time Profile | ARoT Action |
+| :--- | :--- | :--- | :--- |
+| **0–2** | Trivial / Iterative | Near-instant | Auto-approve |
+| **3–5** | Moderate / Divide and Conquer | Seconds–minutes | Background audit; no bottleneck |
+| **6–7** | Deep / Hierarchical | Extended | Conditional approval; Intent Memo required |
+| **8–10** | Extreme / Exponential | Long-form R&D | Mandatory human review before start; CNG on breach |
+
+**Key Controls:**
+
+- $R_{0-10}$ is **proposed** by the agent from prompt analysis
+- $R_{0-10}$ ceiling is **set and enforced** by ARoT — not adjustable
+  by the agent at runtime
+- If $R_{0-10}$ reaches **8** without positive $V_c$ (Convergence
+  Velocity), system shifts to Computational Neutral Gear (CNG)
+- All recursion depth proposals and approvals are logged in CMC's
+  immutable append-only log
+
+
 ### Behavioral Trait Deviation (BTD)
 
 Behavioral Trait Deviation (BTD) measures divergence between an authorized behavioral trait profile established at deployment and real-time projections derived from model activations during inference.
