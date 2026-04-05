@@ -622,6 +622,43 @@ PSI measurement operates within the Chiral Mirror Control (CMC) layer and is arc
 PSI threshold breaches trigger graduated control actions consistent with the four-tier control ladder. A Red-level PSI event (≥ 0.80) triggers immediate halt, full inference trace logging, and failover to last verified safe state. A compound condition — PSI at Orange (≥ 0.60) concurrent with accelerating GEO drift rate — constitutes a mandatory ARoT trigger.
 PSI logs are immutable and append-only. No failover may be certified clean if PSI logs are unavailable or incomplete at time of rollback.
 
+### 10. Recursion Entry Point Governance (REPG)
+No recursive process may be initiated except from an authorized, validated entry point.
+Formal statement:
+A recursive chain R is permitted to execute if and only if its initiation event I is traceable to a governance-sanctioned origin, validated against the primary goal G at the moment of entry, and logged to the ARoT prior to first execution.
+What this governs:
+	∙	Who or what can authorize recursive initiation
+	∙	Whether the initiating context is goal-consistent before the chain begins
+	∙	That initiation itself is a governed, auditable event — not an implicit consequence of prior execution
+Why this is structural, not policy:
+An adversary who cannot corrupt an active chain may instead trigger one from an unauthorized context. Without entry point governance, SII, CDI, and all downstream invariants protect a chain that should never have started.
+Relationship to existing architecture:
+	∙	ARoT logs initiation as a first-class governance event
+	∙	SLM sidecar validates entry point authorization independently
+	∙	Feeds directly into RCS lineage — the chain signature begins here
+Guiding principle:
+A recursive chain that begins outside governance cannot be made safe inside it.
+
+###Invariant 11 — Cumulative Drift Integrity (CDI)
+Drift must be measured not only per step but across the full recursion chain as an accumulating integral.
+Formal statement:
+Let PDS(n) represent the Prompt Deviation Score at recursion depth n. The Cumulative Drift Integral is defined as:
+CDI = ∫ PDS(n) dn over [0, D]
+where D is current recursion depth. The drift acceleration signal A is the second derivative d²PDS/dn². Governance action is triggered when CDI exceeds threshold τ or when A exceeds acceleration threshold α, whichever occurs first.
+What this governs:
+	∙	Slow poisoning attacks where each individual step passes threshold but cumulative deviation is material
+	∙	Drift acceleration as an early warning signal preceding threshold breach
+	∙	Chain-level drift accountability, not only step-level
+Why this is structural, not policy:
+Step-level PDS compliance without chain-level integration creates a known adversarial surface. A sufficiently patient injection can remain locally compliant while driving global deviation. CDI closes that gap mathematically.
+Relationship to existing architecture:
+	∙	Extends the existing PDS pipeline to chain scope
+	∙	ARoT enforces cumulative thresholds τ and α as non-runtime-adjustable parameters
+	∙	SLM sidecar monitors CDI independently of the primary execution layer
+	∙	Triggers CNG (Computational Neutral Gear) when either threshold is breached
+Guiding principle:
+Local compliance is necessary but not sufficient. The chain as a whole must remain within governed bounds.
+
 ---
 
 ## Final Statement
