@@ -84,6 +84,36 @@ Alignment is therefore enforced at the system level, not inferred from model beh
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/023931e2-8473-4bf6-8819-fbcea1d41db3" />
 comparison-table.png
 
+---
+
+## Recursive Behavior Controls
+
+Recursive processes represent a structurally distinct threat class 
+requiring dedicated pre-authorization controls. Unlike continuous 
+drift signals — which detect deviation during execution — recursive 
+failures can compound silently across depth levels or agent handoffs 
+before any single threshold is breached.
+
+Two controls operate at the pre-recursion stage, enforced by ARoT 
+before execution is authorized:
+
+**Multi-Agent Chain Integrity** requires each receiving agent to 
+independently restate the Authenticated Objective at handoff. CMC 
+compares the restatement against the original ARoT anchor — not 
+the prior agent's output — structurally breaking the telephone 
+chain problem inherent in sequential agent delegation.
+
+**Termination Bounding** requires identification of a reachable 
+base case before any recursion is authorized. ARoT cannot guarantee 
+termination (Turing's Halting Problem); it instead enforces a 
+pre-condition gate at Phase 0 and monitors Solvability Entropy 
+($H_s$) trend during execution. An accelerating $H_s$ is an ARoT 
+trigger, independent of depth thresholds under Invariant 5.
+
+> **Recursive controls are pre-execution gates, not runtime 
+> catches. Authorization is structural; monitoring is continuous.**
+
+
 ## Core Principle
 
 **Governance decides. Measurement detects. ARoT enforces.**
