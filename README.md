@@ -635,8 +635,9 @@ An adversary who cannot corrupt an active chain may instead trigger one from an 
 Relationship to existing architecture:
 	∙	ARoT logs initiation as a first-class governance event
 	
-SLM sidecar independently witnesses and logs initiation as a separate governance record	 
-RCS lineage — the chain signature begins here
+SLM sidecar independently witnesses and logs initiation as a separate governance record	
+
+Feeds directly into RCS lineage — the chain signature begins here
 
 Guiding principle:
 A recursive chain that begins outside governance cannot be made safe inside it.
