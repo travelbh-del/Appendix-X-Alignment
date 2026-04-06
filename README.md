@@ -629,10 +629,10 @@ What this governs:
 Why this is structural, not policy:
 An adversary who cannot corrupt an active chain may instead trigger one from an unauthorized context. Without entry point governance, SII, CDI, and all downstream invariants protect a chain that should never have started.
 Relationship to existing architecture:
-	∙	ARoT logs initiation as a first-class governance event
-	
-SLM sidecar independently witnesses and logs initiation as a separate governance record	
 
+' ARoT logs initiation as a first-class governance event
+	
+' SLM sidecar independently witnesses and logs initiation as a separate governance record	
 Feeds directly into RCS lineage — the chain signature begins here
 
 Guiding principle:
