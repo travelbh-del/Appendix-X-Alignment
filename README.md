@@ -653,6 +653,7 @@ Relationship to Existing Architecture:
 • Extends Goal Declaration and Goal Consistency invariants into recursive initiation
 • Provides pre-execution gating prior to PDS-based runtime control
 • Establishes the root lineage anchor for CDI tracking and RSR 
+Enforcement is anchored at the runtime/orchestration boundary, with ARoT operating as a non-bypassable root-of-trust layer and the SLM sidecar executing as an independent verification channel.
 
 ### Invariant 11: Cumulative Drift Index (CDI)
 
