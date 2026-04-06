@@ -273,9 +273,7 @@ This graduated control structure ensures that most prompt influence is absorbed 
 
 <img ... />
 
-*PDS threshold bands and composite signal structure used to drive control actions*
-
-⬇️ INSERT STARTS HERE ⬇️
+*PDS threshold bands and composite signal structure used to drive control 
 
 The following control model governs system response to measured prompt deviation:
 
@@ -285,8 +283,6 @@ PDS captures prompt-induced behavioral drift, including effects such as sycophan
 • Review State — bounded evaluation mode triggered at moderate deviation  
 • Damping Response — reduction of optimization intensity and increased constraint signaling  
 • Failover — automatic reversion to last verified safe state under critical instability  
-
-⬆️ INSERT ENDS HERE ⬆️
 
 Prompt Deviation Score (PDS) is a composite metric...
 
