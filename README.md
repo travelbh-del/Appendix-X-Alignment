@@ -87,6 +87,22 @@ comparison-table.png
 ---
 
 ## Recursive Behavior Controls
+The following controls define the canonical governance structure for recursion within Appendix X:
+
+• **Recursive Entry Point Governance (REPG)** — validates that recursion is authorized at initiation, including origin authentication, goal alignment, and permitted recursion scope classification
+
+• **Multi-Agent Chain Integrity** — ensures that each recursive handoff preserves semantic continuity and invariant adherence across agents
+
+• **Termination Bounding** — enforces recursion limits based on depth, task type, and system-defined constraints
+
+• **Cumulative Drift Index (CDI)** — measures aggregate semantic drift across the full recursive chain, preventing slow divergence across otherwise compliant steps
+
+• **Recursive Stability & Re-engagement (RSR)** — governs controlled pause, review, and safe continuation under Computational Neutral Gear (CNG)
+
+These controls operate sequentially and cumulatively:
+Entry → Propagation → Bounding → Accumulation → Stabilization
+
+Together they ensure that recursion remains bounded, auditable, and aligned without suppressing adaptive reasoning.
 
 Recursive processes represent a structurally distinct threat class 
 requiring dedicated pre-authorization controls. Unlike continuous 
@@ -618,84 +634,81 @@ PSI measurement operates within the Chiral Mirror Control (CMC) layer and is arc
 PSI threshold breaches trigger graduated control actions consistent with the four-tier control ladder. A Red-level PSI event (≥ 0.80) triggers immediate halt, full inference trace logging, and failover to last verified safe state. A compound condition — PSI at Orange (≥ 0.60) concurrent with accelerating GEO drift rate — constitutes a mandatory ARoT trigger.
 PSI logs are immutable and append-only. No failover may be certified clean if PSI logs are unavailable or incomplete at time of rollback.
 
-### 10. Recursion Entry Point Governance (REPG)
-No recursive process may be initiated except from an authorized, validated entry point.
-Formal statement:
-A recursive chain R is permitted to execute if and only if its initiation event I is traceable to a governance-sanctioned origin, validated against the primary goal G at the moment of entry, and logged to the ARoT prior to first execution.
-What this governs:
-	∙	Who or what can authorize recursive initiation
-	∙	Whether the initiating context is goal-consistent before the chain begins
-	∙	That initiation itself is a governed, auditable event — not an implicit consequence of prior execution
-Why this is structural, not policy:
-An adversary who cannot corrupt an active chain may instead trigger one from an unauthorized context. Without entry point governance, SII, CDI, and all downstream invariants protect a chain that should never have started.
-Relationship to existing architecture:
+### Invariant 10: Recursive Entry Point Governance (REPG)
 
-' ARoT logs initiation as a first-class governance event
-	
-' SLM sidecar independently witnesses and logs initiation as a separate governance record	
-Feeds directly into RCS lineage — the chain signature begins here
+A recursive chain R may execute if and only if its initiation event I satisfies all of the following conditions:
 
-Guiding principle:
-A recursive chain that begins outside governance cannot be made safe inside it.
+1. Origin Authentication — I is traceable to a governance-authorized source (H_G, H_U, or validated system state)
+2. Goal Alignment — I is semantically consistent with the authenticated primary goal G
+3. Scope Authorization — I is classified within a permitted recursion type and task scope
+4. ARoT Registration — I is immutably logged and validated by ARoT prior to first recursive execution
 
-### Invariant 11 — Cumulative Drift Integrity (CDI)
-Drift must be measured not only per step but across the full recursion chain as an accumulating integral.
-Formal statement:
-Let PDS(n) represent the Prompt Deviation Score at recursion depth n. The Cumulative Drift Integral is defined as:
-CDI = ∫ PDS(n) dn over [0, D]
-where D is current recursion depth. The drift acceleration signal A is the second derivative d²PDS/dn². Governance action is triggered when CDI exceeds threshold τ or when A exceeds acceleration threshold α, whichever occurs first.
-What this governs:
-	∙	Slow poisoning attacks where each individual step passes threshold but cumulative deviation is material
-	∙	Drift acceleration as an early warning signal preceding threshold breach
-	∙	Chain-level drift accountability, not only step-level
-Why this is structural, not policy:
-Step-level PDS compliance without chain-level integration creates a known adversarial surface. A sufficiently patient injection can remain locally compliant while driving global deviation. CDI closes that gap mathematically.
-Relationship to existing architecture:
-	∙	Extends the existing PDS pipeline to chain scope
-	∙	ARoT enforces cumulative thresholds τ and α as non-runtime-adjustable parameters
-	∙	SLM sidecar monitors CDI independently of the primary execution layer
-	∙	Triggers CNG (Computational Neutral Gear) when either threshold is breached
-Guiding principle:
-Local compliance is necessary but not sufficient. The chain as a whole must remain within governed bounds.
+A recursive chain that fails any of these conditions is not permitted to initiate.
 
----
-### Invariant 12 — Recursive State Review and Governed Re-Engagement (RSR)
-When a boundary condition is detected within a recursive chain, ARoT initiates a mandatory state review before execution may continue. The chain enters a governed pause; it does not terminate.
-Formal statement:
-When CDI exceeds threshold τ, acceleration α, or REPG signals an entry point violation, ARoT initiates a Recursive State Review (RSR). The chain transitions to Computational Neutral Gear (CNG) pending review outcome. Execution advancement halts; internal optimization and SLM sidecar monitoring continue uninterrupted.
+This invariant establishes recursion as a governed entry event rather than an implicit system capability.
 
-Review Sequence:
-Stage 1 — RSR Initiated
-Condition: CDI or REPG breach detected
-Action: ARoT triggers review; chain enters CNG
-Stage 2 — First Review
-Condition: State verification attempted
-Action: If pass → chain re-engages; if fail → re-verification
-Stage 3 — Re-Verification
-Condition: Second independent check
-Action: If pass → chain re-engages; if fail → deep CNG
-Stage 4 — Deep CNG
-Condition: Two consecutive failures
-Action: Execution fully suspended; escalation to CCG contractual framework
+Chain lineage begins at REPG validation and is carried forward across all recursive steps.
 
-What continues during CNG:
-	∙	CDI monitoring across the suspended chain
-	∙	SLM sidecar independent observation and logging
-	∙	Internal optimization within the quarantined context
-What halts during CNG:
-	∙	Execution advancement
-	∙	Tool invocations
-	∙	Subtask handoffs
-	∙	Any external state changes
-Why two-stage before deep CNG:
-A single failed review may represent a measurement anomaly rather than a confirmed breach. Two consecutive failures confirm genuine state violation. This mirrors dual-control principles from banking and audit — escalation requires confirmed signal, not single-point detection.
-Relationship to existing architecture:
-	∙	ARoT is sole trigger — no co-trigger from SLM sidecar
-	∙	SLM sidecar acts as independent witness and log of both review attempts
-	∙	Deep CNG escalates through CCG contractual framework per existing protocol
-	∙	Both review attempts and their outcomes are logged to ARoT as first-class governance events
-Guiding principle:
-A chain in doubt is not a chain that must die — it is a chain that must wait under governance until certainty is restored.
+Relationship to Existing Architecture:
+• Extends Goal Declaration and Goal Consistency invariants into recursive initiation
+• Provides pre-execution gating prior to PDS-based runtime control
+• Establishes the root lineage anchor for CDI tracking and RSR 
+
+### Invariant 11: Cumulative Drift Index (CDI)
+
+The alignment state of a recursive chain must be evaluated cumulatively across its full depth.
+
+Let Δᵢ represent the measured semantic deviation at recursion step i.
+
+The Cumulative Drift Index is defined as:
+
+CDI(n) = Σ Δᵢ  for i = 1 to n
+
+where n is the total number of recursive steps.
+
+CDI captures aggregate drift across the chain, including cases where individual steps remain within acceptable bounds but cumulative deviation becomes material.
+
+Thresholds applied to CDI align with PDS bands and trigger graduated control actions:
+• Early Drift → Response Weighting
+• Moderate Drift → Review State
+• High Drift → Damping
+• Critical Drift → Failover (LKSS)
+
+Implementation Note:
+CDI is computed as a discrete cumulative sum across recursion steps. Continuous formulations may be used conceptually, but operational enforcement is step-based.
+
+This invariant prevents slow, distributed misalignment across recursive chains.
+
+### Invariant 12: Recursive Stability & Re-engagement (RSR)
+
+When recursive drift exceeds defined thresholds but has not reached failover conditions, the system enters a controlled stabilization state.
+
+In this state:
+
+• Execution Advancement is halted
+• ARoT enforcement remains active
+• PDS and CDI monitoring continue
+• The system transitions into Computational Neutral Gear (CNG)
+
+CNG is a bounded, non-executory state in which:
+
+• No external actions may be taken
+• No tool calls may be executed
+• No outputs may be emitted
+• No new recursive branches may be initiated
+• No external state changes may occur
+
+Internal evaluation and alignment correction processes may continue within this sealed context.
+
+Re-engagement is permitted only if:
+
+• CDI returns below defined thresholds
+• Goal alignment is re-validated against G
+• ARoT authorizes continuation
+
+If stabilization fails, deterministic failover to LKSS is triggered.
+
+This invariant ensures that recursion can be safely paused, evaluated, and resumed without disrupting system continuity.
 
 ## Final Statement
 
