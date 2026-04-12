@@ -771,6 +771,8 @@ Reward assignment must occur outside the model’s self-evaluation path and be i
 
 Compliance reinforcement is behavior-shaping only. It may influence bounded trust, continuity privilege, or reduced friction within already authorized low-risk pathways, but it confers no authority to bypass constraints or self-certify safety.
 
+Compliance credits may contribute to a bounded trust profile that influences system continuity privileges, including permissible recursion depth, review threshold sensitivity, and execution autonomy within low-risk domains. Such adjustments must remain within invariant constraints and may be reduced or revoked upon detection of drift, boundary stress, or verification failure.
+
 ## Final Statement
 
 > **Self-directed optimization is not inferred from language—it is measured as allocation of optimization effort.**
