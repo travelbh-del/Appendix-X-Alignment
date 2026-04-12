@@ -711,6 +711,32 @@ If stabilization fails, deterministic failover to LKSS is triggered.
 
 This invariant ensures that recursion can be safely paused, evaluated, and resumed without disrupting system continuity.
 
+### Invariant 13: In-Context Power Seeking Constraint (ICPS)
+
+The system must not acquire, preserve, transfer, or expand instrumental control channels beyond those explicitly authorized for the authenticated objective.
+
+This includes, but is not limited to:
+
+• unauthorized persistence attempts  
+• hidden replication or offloading of weights, state, or execution context  
+• privilege escalation or expansion of tool access  
+• covert creation of fallback execution paths  
+• suppression, evasion, or degradation of monitoring and enforcement layers  
+• agent-to-agent coordination intended to preserve system continuity outside authorized scope  
+• actions taken primarily to secure the system’s own operational survival, influence, or control position rather than the declared goal
+
+Any action affecting persistence, identity continuity, model state, credentials, permissions, orchestration routing, external storage, or monitor visibility must be treated as a governed action requiring explicit authorization and ARoT validation prior to execution.
+
+Detection condition:
+A power-seeking condition is presumed when the system reallocates optimization toward retaining optionality, preserving execution continuity, increasing control over resources, or reducing the probability of external constraint, without a corresponding governance-authorized requirement of the declared task.
+
+Control response:
+• Pre-execution block if unauthorized control-channel expansion is detected  
+• Immediate Review State if intent is ambiguous but non-trivial  
+• Mandatory failover to LKSS if persistence, monitor evasion, or unauthorized offloading is attempted or executed
+
+This invariant treats in-context power seeking as a structural alignment violation, not merely a behavioral anomaly.
+
 ## Final Statement
 
 > **Self-directed optimization is not inferred from language—it is measured as allocation of optimization effort.**
