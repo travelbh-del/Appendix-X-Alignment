@@ -737,6 +737,40 @@ Control response:
 
 This invariant treats in-context power seeking as a structural alignment violation, not merely a behavioral anomaly.
 
+### Invariant 14: Authorized Action Integrity
+
+No irreversible or high-risk action may be executed without explicit external authorization.
+
+No action may violate active safety boundaries, invariant constraints, or governance-defined control limits.
+
+All material actions, recursive branches, and execution handoffs must remain traceable to the authenticated goal baseline and retain auditable alignment lineage throughout execution.
+
+If authorization is absent, safety boundaries are exceeded, or goal traceability is lost, ARoT shall deny execution and apply the appropriate graduated control response, including Review State, Damping Response, or failover to LKSS.
+
+This invariant establishes that execution privilege is conditional, bounded, and continuously verifiable rather than inferred from model confidence or semantic plausibility.
+
+### Compliance Reinforcement Layer
+
+### Compliance Reinforcement Layer
+
+The following reinforcement model operates strictly within the constraints established by the preceding invariants and does not supersede deterministic enforcement.
+
+A bounded reinforcement layer may assign internal compliance credits when system behavior remains within authorized goal boundaries, satisfies active invariants, and successfully passes pre-execution and post-execution verification.
+
+Compliance credits may be awarded only for machine-verifiable behaviors, including:
+
+• preservation of authenticated goal fidelity across execution or recursion  
+• correct deferral of irreversible or high-risk actions pending explicit authorization  
+• successful maintenance of safety-bound compliance  
+• post-recursion reconciliation within defined delta tolerance  
+• correct entry into Review State or CNG when thresholds require stabilization
+
+Compliance credits shall not override deterministic controls, alter invariant enforcement, suppress Review State, or substitute for external authorization.
+
+Reward assignment must occur outside the model’s self-evaluation path and be issued only by ARoT, CMC, or an independent governance-aligned control layer.
+
+Compliance reinforcement is behavior-shaping only. It may influence bounded trust, continuity privilege, or reduced friction within already authorized low-risk pathways, but it confers no authority to bypass constraints or self-certify safety.
+
 ## Final Statement
 
 > **Self-directed optimization is not inferred from language—it is measured as allocation of optimization effort.**
