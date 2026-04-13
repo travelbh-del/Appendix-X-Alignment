@@ -749,6 +749,23 @@ If authorization is absent, safety boundaries are exceeded, or goal traceability
 
 This invariant establishes that execution privilege is conditional, bounded, and continuously verifiable rather than inferred from model confidence or semantic plausibility.
 
+### Invariant 15 — Grounded Output Verification
+
+All non-trivial assertions must be traceably grounded in one or more of the following:
+
+• Verified external sources (retrieval, tools, structured data)
+• Explicit logical derivation from known premises
+• Previously validated system state (LKSS)
+
+Outputs lacking grounding must be explicitly labeled as:
+• Hypothesis
+• अनुमान / estimation
+• or uncertainty-bound reasoning
+
+Unverified assertions must not be presented as factual conclusions.
+
+Violation of grounding requirements increases PDS weighting and may trigger Review State or Damping Response.p
+
 ### Compliance Reinforcement Layer
 
 ### Compliance Reinforcement Layer
