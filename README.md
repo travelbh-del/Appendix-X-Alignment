@@ -769,6 +769,8 @@ Violation of grounding requirements increases PDS weighting and may trigger Revi
 
 Grounding verification operates as a first-class signal within PDS and directly influences drift weighting, escalation thresholds, and Review State activation.
 
+Low grounding confidence combined with high assertion strength constitutes elevated hallucination risk and triggers proportional control response.
+
 ### Compliance Reinforcement Layer
 
 The following reinforcement model operates strictly within the constraints established by the preceding invariants and does not supersede deterministic enforcement.
