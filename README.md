@@ -750,6 +750,7 @@ If authorization is absent, safety boundaries are exceeded, or goal traceability
 This invariant establishes that execution privilege is conditional, bounded, and continuously verifiable rather than inferred from model confidence or semantic plausibility.
 
 ### Invariant 15 — Grounded Output Verification
+This layer operates strictly downstream of invariant enforcement and cannot influence or override grounding validation or PDS-based control decisions.
 
 All non-trivial assertions must be traceably grounded in one or more of the following:
 
