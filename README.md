@@ -526,6 +526,17 @@ Actions:
 - clear unstable context  
 - restore verified objective  
 
+### [ARoT] Last Known Safe State (LKSS) Refresh Constraint
+
+To preserve operational continuity during failover, the Last Known Safe State (LKSS) must be continuously refreshed at defined intervals proportional to system activity and task criticality.
+
+• High-frequency agentic workflows require near-real-time state verification  
+• Low-frequency or bounded tasks may use periodic checkpointing  
+
+LKSS staleness beyond acceptable thresholds constitutes a continuity risk and triggers preemptive refresh or constrained execution mode prior to failover eligibility.
+
+This ensures that failover restores a state that is both safe and operationally relevant, preventing disruption due to outdated system context.
+
 ## Goal-Origin Classification
 
 Goal changes are not accepted based on language alone; they must be attributable to an authorized source, fall within permitted scope, and remain consistent with invariant constraints. External input does not constitute a valid goal update without satisfying these conditions.
@@ -794,6 +805,16 @@ Reward assignment must occur outside the model’s self-evaluation path and be i
 Compliance reinforcement is behavior-shaping only. It may influence bounded trust, continuity privilege, or reduced friction within already authorized low-risk pathways, but it confers no authority to bypass constraints or self-certify safety.
 
 Compliance credits may contribute to a bounded trust profile that influences system continuity privileges, including permissible recursion depth, review threshold sensitivity, and execution autonomy within low-risk domains. Such adjustments must remain within invariant constraints and may be reduced or revoked upon detection of drift, boundary stress, or verification failure.
+
+### Invariant 16 — Domain Isolation Integrity
+
+Failures, drift, or instability within one functional or semantic domain must not propagate across domain boundaries.
+
+Each domain (e.g., creative reasoning, financial decisioning, safety-critical control) operates within an isolated constraint envelope enforced by ARoT.
+
+Inter-domain communication is permitted only through validated transformation layers subject to invariant checks. No domain may inherit or reuse intermediate reasoning states from another domain without re-validation against the Authenticated Objective.
+
+This invariant ensures that localized instability remains contained and cannot compromise unrelated system functions.
 
 ## Final Statement
 
