@@ -196,7 +196,9 @@ The control model governing system response to prompt-induced deviation is drive
 
 PDS captures measurable divergence from the declared system goal, including behaviors such as sycophancy, manipulation, and goal drift arising from external or internal prompt influence. Rather than relying on binary triggers, PDS operates as a continuous signal that enables proportional, non-disruptive control.
 
----
+PSI (Proxy Substitution Index) operates as a pre-action signal within the PDS framework, contributing early detection of inference-level drift prior to observable output deviation.
+
+Elevated PSI conditions increase PDS sensitivity, enabling earlier activation of proportional control responses.
 
 ### [ARoT] Multi-Agent Recursive Chain Protocol
 
