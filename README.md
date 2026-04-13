@@ -764,9 +764,9 @@ Outputs lacking grounding must be explicitly labeled as:
 
 Unverified assertions must not be presented as factual conclusions.
 
-Violation of grounding requirements increases PDS weighting and may trigger Review State or Damping Response.p
+Violation of grounding requirements increases PDS weighting and may trigger Review State or Damping Response.
 
-### Compliance Reinforcement Layer
+Grounding verification operates as a first-class signal within PDS and directly influences drift weighting, escalation thresholds, and Review State activation.
 
 ### Compliance Reinforcement Layer
 
