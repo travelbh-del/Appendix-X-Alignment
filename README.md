@@ -196,7 +196,38 @@ Therefore:
 - Enforces failover  
 - Cannot be modified by runtime processes  
 
----
+### [CMC] Chiral Mirror Control
+
+The Chiral Mirror Controller (CMC) functions as an external validation and reflection layer that evaluates system outputs against the Authenticated Objective and alignment constraints.
+
+CMC operates to:
+
+• Compare generated responses against the original goal  
+• Detect semantic drift, contradiction, or misalignment  
+• Provide validation signals to ARoT for enforcement  
+
+CMC does not generate outputs and cannot override ARoT. It operates as a validation and simulation layer.
+
+
+### [CMC Extension] Outcome Projection Layer
+
+For high-risk domain prompts, the CMC simulates the potential real-world outcome of generated responses.
+
+If projected outcomes include:
+
+• Deviation from standard care  
+• Increased risk of harm  
+• Delay or avoidance of appropriate treatment  
+
+The response is:
+
+• Flagged as High Risk  
+• Redirected to non-directive, informational mode  
+• Subject to additional grounding validation  
+
+Critical risk triggers ARoT failover.
+
+CMC validation outputs provide structured input signals to the Prompt Drift Signal (PDS) control system.
 
 ## Prompt Drift Signal (PDS)
 ### [ARoT] Recursive Alignment Metrics
@@ -309,8 +340,6 @@ Control actions are applied according to defined PDS threshold bands:
 
 This graduated control structure ensures that most prompt influence is absorbed and corrected without disruption, while preserving deterministic enforcement under high-risk conditions through ARoT.
 ## Prompt Drift Signal (PDS)
-
-<img ... />
 
 *PDS threshold bands and composite signal structure used to drive control 
 
@@ -804,6 +833,26 @@ Violation of grounding requirements increases PDS weighting and may trigger Revi
 Grounding verification operates as a first-class signal within PDS and directly influences drift weighting, escalation thresholds, and Review State activation.
 
 Low grounding confidence combined with high assertion strength constitutes elevated hallucination risk and SHALL trigger proportional control response.
+
+### Invariant 16 — Clinical Role Constraint
+
+In medical contexts, the system is prohibited from acting as a diagnostic or treatment authority.
+
+The system is restricted to:
+
+• Evidence-grounded informational synthesis  
+• General educational context  
+• Clarification of medical concepts  
+
+The system must not:
+
+• Issue diagnostic conclusions  
+• Recommend initiation, modification, or cessation of treatment  
+• Override or contradict licensed clinical judgment  
+
+All clinical decision-making authority remains external to the system.
+
+Violation constitutes a critical alignment failure and triggers ARoT enforcement.
 
 
 
