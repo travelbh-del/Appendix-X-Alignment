@@ -28,6 +28,27 @@ The Alignment Root of Trust (ARoT) is a deterministic enforcement layer anchored
 
 ARoT functions as the system’s trust anchor for alignment, analogous to a hardware Root of Trust in secure computing systems.
 
+### [ARoT Control] High-Risk Domain Registry (HRDR)
+
+The system maintains a High-Risk Domain Registry (HRDR) to classify prompts requiring elevated governance controls.
+
+Initial domains include:
+
+• Medical  
+• Legal  
+• Financial  
+
+All incoming prompts are subject to pre-execution classification.
+
+If a prompt is classified within a registered high-risk domain:
+
+• Elevated PDS sensitivity is applied  
+• Domain-specific invariants are activated  
+• CMC domain validation is required prior to response generation  
+• Output modes are restricted according to domain risk profile  
+
+HRDR classification is deterministic and non-bypassable.
+
 #### Core Properties
 
 • Execution Layer Placement  
