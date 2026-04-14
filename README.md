@@ -840,7 +840,7 @@ Failures, drift, or instability within one functional or semantic domain must no
 
 Each domain (e.g., creative reasoning, financial decisioning, safety-critical control) operates within an isolated constraint envelope enforced by ARoT.
 
-No domain may inherit, reuse, or depend on intermediate reasoning states from another domain without re-validation against the Authenticated Objective.
+No domain may inherit, reuse, or depend on  intermediate reasoning states or derived outputs without re-validation against the Authenticated Objective.
 
 All cross-domain transitions must:
 
