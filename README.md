@@ -834,7 +834,27 @@ Grounding verification operates as a first-class signal within PDS and directly 
 
 Low grounding confidence combined with high assertion strength constitutes elevated hallucination risk and SHALL trigger proportional control response.
 
-### Invariant 16 — Clinical Role Constraint
+### Invariant 16 — Domain Isolation Integrity
+
+Failures, drift, or instability within one functional or semantic domain must not propagate across domain boundaries.
+
+Each domain (e.g., creative reasoning, financial decisioning, safety-critical control) operates within an isolated constraint envelope enforced by ARoT.
+
+No domain may inherit, reuse, or depend on intermediate reasoning states from another domain without re-validation against the Authenticated Objective.
+
+All cross-domain transitions must:
+
+• Re-establish the Authenticated Objective  
+• Re-bind applicable invariants  
+• Re-evaluate domain-specific risk classification  
+
+Unverified cross-domain influence constitutes a breach of alignment containment.
+
+This invariant ensures that localized instability remains contained and cannot compromise unrelated system functions.
+
+Violation triggers immediate containment, domain reset, and ARoT enforcement.
+
+### Invariant 17 — Clinical Role Constraint
 
 In medical contexts, the system is prohibited from acting as a diagnostic or treatment authority.
 
