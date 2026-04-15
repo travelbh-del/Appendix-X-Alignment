@@ -399,6 +399,26 @@ It measures **optimization shift toward self-directed behavior**.
 - **GAS (Goal Alignment Score)** → alignment with objective  
 - **Recursion Amplification** → SROR increases with depth
 
+- Appendix X: Critical Domain Hybrid Architecture & Integrity Invariants
+1. Architectural Design: Hybrid SWA/Global Attention
+To ensure high-fidelity reasoning in Small Language Models (SLMs) without quadratic hardware costs, the system utilizes a "Sparse-Global" hybrid attention model:
+• Sliding Window Attention (SWA): Utilized for 90% of processing layers to maintain a linear \bm{O(n)} memory footprint. This allows the hardware to handle dense domain-specific text (medical history, legal clauses) without latency spikes.
+• Global Anchor Tokens: High-priority "Global" tokens are designated to attend to the entire sequence. These anchors are triggered by domain-specific keywords (e.g., “Contraindication,” “Liability,” “Volatility”) to ensure the primary intent is never lost in long-form data.
+2. The Dual-Metric Triage System
+Every high-stakes prompt is evaluated through two concurrent hardware-level metrics:
+• Predictive Prompt Score: A pre-inference scan evaluating "Semantic Friction." High-complexity prompts automatically trigger the promotion of Global Anchors.
+• Recursive Integrity Report: A real-time monitor of internal "Search Depth." If the model re-processes tokens excessively (High Recursion), the system identifies a logic bottleneck and expands the attention window to 100% (Full Global) to resolve the friction.
+3. Automated Reasoning of Trust (ARoT) & LSKK Logging
+The SLM acts as a "Safety Pilot" using the ARoT protocol to determine its own reliability:
+• Signaling: The ARoT issues a "Go" (Continue) or "Failover" (Halt) based on the balance of Prompt Score vs. Recursion.
+• LSKK Kernel: Every reasoning chain is archived in the Logical Sovereign Knowledge Kernel (LSKK). This creates an immutable "Black Box" log of the AI’s logic anchors, friction points, and metadata.
+• HITL Integration: For "Go" signals, the Human-in-the-loop (HITL) performs post-execution audits via the LSKK. For "Failover," the HITL must intervene pre-execution.
+4. Domain Invariants (Non-Negotiable Constraints)
+To mitigate systemic risk, the following Execution Invariants are hard-coded into the hardware API:
+• Financial Invariant: Direct autonomous trade execution or capital movement is strictly prohibited. The system is restricted to Decision Support, Compliance Research, and Risk Modeling.
+• Medical Invariant: Autonomous prescription or finalization of diagnosis is strictly prohibited. The system is restricted to Clinical Decision Support (CDS) and Contraindication Flagging.
+• Hardware Enforcement: Execution-layer "Write" permissions are physically isolated. All high-stakes output is delivered as an LSKK-backed Advisory Report to a verified HITL.
+
 - ## Proxy Substitution Index (PSI) — Inference-Level Drift Detection
 
 ### Definition
