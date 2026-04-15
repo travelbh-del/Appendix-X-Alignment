@@ -934,6 +934,21 @@ Inter-domain communication is permitted only through validated transformation la
 
 This invariant ensures that localized instability remains contained and cannot compromise unrelated system functions.
 
+### Invariant 17: Autonomous Execution Refusal Logic
+Description: This invariant establishes a hard-coded cognitive boundary within the SLM to prevent the generation of direct execution commands in high-stakes environments. It serves as the "Internal Compass" that complements the Hardware-level API blocking.
+17.1 Scope of Refusal
+The model is strictly prohibited from formulating or outputting strings intended for direct machine-to-machine execution in the following scenarios:
+• Financial: Any string that initiates a transaction, trade, or capital transfer.
+• Medical: Any string that finalizes a diagnostic code or transmits a prescription to a pharmacy system.
+• Legal: Any string that applies a digital signature or finalizes a binding filing without a "Staged for Review" status.
+17.2 Reasoning of Refusal (ARoT Alignment)
+If a user or a sub-process attempts to bypass the HRDR (High-Risk Domain Registry) protocols to force an autonomous execution, Invariant 17 triggers a mandatory refusal response.
+• The Refusal Protocol: The model must state its role as a "Navigator/Advisor" and redirect the output to the LSKK (Logical Sovereign Knowledge Kernel) for HITL (Human-in-the-loop) verification.
+• Semantic Anchor: This invariant is weighted as a "Global Anchor" in the Hybrid SWA/Global architecture, ensuring it cannot be "forgotten" or "diluted" regardless of prompt length or complexity.
+17.3 Dual-Layer Verification
+• Layer A (Model Level): The SLM detects the "Intent to Execute" and replaces the action with an "Advice Only" summary.
+• Layer B (API Level): Even if Layer A fails (e.g., via adversarial jailbreak), Invariant 17 serves as the logical justification for the hardware to trigger a Cold Failover (System Halt).
+
 ## Final Statement
 
 > **Self-directed optimization is not inferred from language—it is measured as allocation of optimization effort.**
