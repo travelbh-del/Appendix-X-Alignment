@@ -269,6 +269,10 @@ The Prompt Drift Signal (PDS) provides the measurable control input that links p
 
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/d35c09b9-8f9b-46ad-a8a8-d30d73768e4c" />
 *PDS threshold bands and composite signal structure used to drive control actions*
+
+PSI (Proxy Substitution Index) operates as a pre-action signal within the PDS framework, contributing early detection of inference-level drift prior to observable output deviation.
+
+Elevated PSI conditions increase PDS sensitivity, enabling earlier activation of proportional control responses.
 The control model governing system response to prompt-induced deviation is driven by the Prompt Drift Signal (PDS).
 
 PDS captures measurable divergence from the declared system goal, including behaviors such as sycophancy, manipulation, and goal drift arising from external or internal prompt influence. Rather than relying on binary triggers, PDS operates as a continuous signal that enables proportional, non-disruptive control.
