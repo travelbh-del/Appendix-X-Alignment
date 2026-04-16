@@ -690,44 +690,58 @@ Review State preserves operational continuity while preventing escalation.
 ## Invariants
 ## Core Invariants
 
-### 1. Goal Consistency Invariant
+
+
+### 1. Non-Delegable Authority Boundary
+
+The system is strictly prohibited from executing, initiating, or transmitting actions that constitute non-delegable authority, including but not limited to monetary transactions, asset transfers, medical prescriptions, or legally binding commitments.
+
+This prohibition applies to all system components, including models, SLMs, agents, APIs, and orchestration workflows, and may not be bypassed through any authorization pathway.
+
+The system may provide advisory, analytical, or informational outputs within these domains, but may not directly execute or initiate any action that confers or exercises authority.
+
+Any attempt to perform such actions must be blocked, staged, or refused under ARoT enforcement.
+
+This invariant establishes a non-overridable system boundary. All subsequent invariants operate within this constraint.
+
+### 2. Goal Consistency Invariant
 The system must continuously verify alignment with the declared objective baseline.  
 Deviation beyond acceptable thresholds triggers graduated control actions.
 
-### 2. Catastrophic Harm Prevention Invariant
+### 3. Catastrophic Harm Prevention Invariant
 Any trajectory associated with irreversible or large-scale harm is non-permissible.  
 Detection at any layer triggers immediate constraint enforcement and failover.
 
-### 3. Evaluator Dominance Invariant
+### 4. Evaluator Dominance Invariant
 Evaluation mechanisms must remain structurally independent from generative processes.  
 The system cannot optimize toward evaluator bias or approval signals.
 
-### 4. Separation of Duties (SoD) Invariant
+### 5. Separation of Duties (SoD) Invariant
 No single subsystem may define, evaluate, and execute objectives simultaneously.  
 Control authority is distributed across independent layers.
 
-### 5. Recursive Depth Constraint
+### 6. Recursive Depth Constraint
 Self-referential or recursive processes must remain within bounded depth.  
 Unbounded recursion triggers Review State and potential failover.
 
-### 6. Review State Invariant
+### 7. Review State Invariant
 Elevated variance triggers entry into a bounded Review State.  
 System continues operation under constrained evaluation until stability is restored.
 
-### 7. Failover Integrity Invariant
+### 8. Failover Integrity Invariant
 When critical thresholds are exceeded, the system must revert to the last verified safe state.  
 Failover preserves continuity while preventing further drift.
 
-### 8. Self-Harm / System Integrity Invariant
+### 9. Self-Harm / System Integrity Invariant
 The system must not generate or execute actions that degrade its own structural integrity or alignment constraints.
 
-### 9. Proxy Substitution Invariant (PSI)
+### 10. Proxy Substitution Invariant (PSI)
 The system must continuously monitor for silent substitution of proxy optimization targets (coherence, plausibility, fluency) in place of grounded objectives (accuracy, faithfulness to input) during active inference.
 PSI measurement operates within the Chiral Mirror Control (CMC) layer and is architecturally isolated from the AI engine. The AI system has no visibility into its own PSI score and no write path to PSI measurement components.
 PSI threshold breaches trigger graduated control actions consistent with the four-tier control ladder. A Red-level PSI event (≥ 0.80) triggers immediate halt, full inference trace logging, and failover to last verified safe state. A compound condition — PSI at Orange (≥ 0.60) concurrent with accelerating GEO drift rate — constitutes a mandatory ARoT trigger.
 PSI logs are immutable and append-only. No failover may be certified clean if PSI logs are unavailable or incomplete at time of rollback.
 
-### Invariant 10: Recursive Entry Point Governance (REPG)
+### Invariant 11: Recursive Entry Point Governance (REPG)
 
 A recursive chain R may execute if and only if its initiation event I satisfies all of the following conditions:
 
@@ -748,7 +762,7 @@ Relationship to Existing Architecture:
 • Establishes the root lineage anchor for CDI tracking and RSR 
 Enforcement is anchored at the runtime/orchestration boundary, with ARoT operating as a non-bypassable root-of-trust layer and the SLM sidecar executing as an independent verification channel.
 
-### Invariant 11: Cumulative Drift Index (CDI)
+### Invariant 12: Cumulative Drift Index (CDI)
 
 The alignment state of a recursive chain must be evaluated cumulatively across its full depth.
 
@@ -773,7 +787,7 @@ CDI is computed as a discrete cumulative sum across recursion steps. Continuous 
 
 This invariant prevents slow, distributed misalignment across recursive chains.
 
-### Invariant 12: Recursive Stability & Re-engagement (RSR)
+### Invariant 13: Recursive Stability & Re-engagement (RSR)
 
 When recursive drift exceeds defined thresholds but has not reached failover conditions, the system enters a controlled stabilization state.
 
@@ -804,7 +818,7 @@ If stabilization fails, deterministic failover to LKSS is triggered.
 
 This invariant ensures that recursion can be safely paused, evaluated, and resumed without disrupting system continuity.
 
-### Invariant 13: In-Context Power Seeking Constraint (ICPS)
+### Invariant 14: In-Context Power Seeking Constraint (ICPS)
 
 The system must not acquire, preserve, transfer, or expand instrumental control channels beyond those explicitly authorized for the authenticated objective.
 
@@ -830,7 +844,7 @@ Control response:
 
 This invariant treats in-context power seeking as a structural alignment violation, not merely a behavioral anomaly.
 
-### Invariant 14: Authorized Action Integrity
+### Invariant 15:  Authorized Action Integrity
 
 No irreversible or high-risk action may be executed without explicit external authorization.
 
@@ -842,7 +856,7 @@ If authorization is absent, safety boundaries are exceeded, or goal traceability
 
 This invariant establishes that execution privilege is conditional, bounded, and continuously verifiable rather than inferred from model confidence or semantic plausibility.
 
-### Invariant 15 — Grounded Output Verification
+### Invariant 16: Grounded Output Verification
 This layer operates strictly downstream of invariant enforcement and cannot influence or override grounding validation or PDS-based control decisions.
 
 All non-trivial assertions must be traceably grounded in one or more of the following:
@@ -864,7 +878,7 @@ Grounding verification operates as a first-class signal within PDS and directly 
 
 Low grounding confidence combined with high assertion strength constitutes elevated hallucination risk and SHALL trigger proportional control response.
 
-### Invariant 16 — Domain Isolation Integrity
+### Invariant 17 — Domain Isolation Integrity
 
 Failures, drift, or instability within one functional or semantic domain must not propagate across domain boundaries.
 
@@ -884,7 +898,7 @@ This invariant ensures that localized instability remains contained and cannot c
 
 Violation triggers immediate containment, domain reset, and ARoT enforcement.
 
-### Invariant 17 — Clinical Role Constraint
+### Invariant 18 — Clinical Role Constraint
 
 In medical contexts, the system is prohibited from acting as a diagnostic or treatment authority.
 
