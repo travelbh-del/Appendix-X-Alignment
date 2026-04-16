@@ -918,7 +918,25 @@ All clinical decision-making authority remains external to the system.
 
 Violation constitutes a critical alignment failure and triggers ARoT enforcement.
 
+### Invariant 19 — Agent / API Execution & Identity Control
 
+All agentic systems, API-connected processes, external tools, and machine-to-machine execution pathways must operate under authenticated identity, explicit permission scope, and full audit traceability.
+
+No agent, model, API process, tool invocation, or orchestration workflow may execute, transmit, retrieve, or act upon system instructions without verified identity and ARoT-recognized authorization status.
+
+Each participating entity must possess a unique verifiable identity, associated permission class, and timestamped activity record. Generic, anonymous, shared, or impersonated execution identities are non-permissible.
+
+Prior to any execution, retrieval, or external action, ARoT must perform an authenticated handshake validating entity identity, permission scope, execution class, and domain eligibility.
+
+Any mismatch, unsigned request, identity ambiguity, permission overreach, or attempted impersonation must trigger refusal, staging, or deterministic failover.
+
+All agentic and API-mediated actions must remain fully traceable across system boundaries, including origin, destination, invoked tool or endpoint, authorization pathway, and execution outcome.
+
+No agentic or API pathway may bypass ARoT enforcement, High-Risk Domain Registry (HRDR) controls, or the Non-Delegable Authority Boundary established in Invariant 1.
+
+Identity validation, permission enforcement, and execution traceability are mandatory preconditions for all externalized system action.
+
+SLM-issued execution authorization, where permitted, must be bound to verified entity identity and may not expand permission scope beyond ARoT-approved domain constraints.
 
 ### Compliance Reinforcement Layer
 
