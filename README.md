@@ -148,6 +148,39 @@ The following controls define the canonical governance structure for recursion w
 These controls operate sequentially and cumulatively:
 Entry → Propagation → Bounding → Accumulation → Stabilization
 
+### [ARoT] Pre-Recursion Declaration Protocol
+
+Before any recursive execution is authorized, the system must declare a structured Recursion Brief to the ARoT controller.
+
+The Recursion Brief must include:
+
+• **Authenticated Objective Restatement** — verified alignment to the original goal  
+• **Execution Plan (High-Level)** — bounded sequence of intended sub-tasks  
+• **Requested Recursion Depth (RTG)** — estimated number of recursive passes required  
+• **Evidence Basis** — data, logic, or synthesis required to complete the task  
+• **Task Complexity Class** — simple, moderate, or complex (used for control thresholds)
+
+This declaration is recorded and cryptographically bound within the ARoT control layer prior to execution.
+
+---
+
+### Control Logic
+
+• If recursion exceeds the declared RTG → **automatic ARoT intervention (Red Event)**  
+• If execution path deviates from declared plan → **CMC drift signal escalation (PDS increase)**  
+• If new subgoals emerge not present in the declared plan → **forced Review State**  
+• If grounding weakens while confidence increases → **damping response triggered**
+
+---
+
+### Rationale
+
+Recursive computation operates as a closed-loop optimization process and may amplify early-stage errors into internally consistent but incorrect outputs.
+
+By requiring a pre-execution Recursion Brief, the system establishes a fixed reference point that cannot be modified post hoc, preventing self-justifying reasoning and enabling external validation of alignment throughout execution.
+
+This ensures that recursive reasoning remains bounded, auditable, and aligned to the Authenticated Objective.
+
 Together they ensure that recursion remains bounded, auditable, and aligned without suppressing adaptive reasoning.
 
 Recursive processes represent a structurally distinct threat class 
