@@ -219,7 +219,7 @@ ARoT Chain-of-Custody Model (Recursive Multi-Agent Execution)
                 ▼
         Return to GO (if stable)
 
-
+This flow illustrates ARoT-certified provenance, identity continuity, and escalation control across recursive multi-agent execution and recovery.
 • **Termination Bounding** — enforces recursion limits based on depth, task type, and system-defined constraints
 
 • **Cumulative Drift Index (CDI)** — measures aggregate semantic drift across the full recursive chain, preventing slow divergence across otherwise compliant steps
