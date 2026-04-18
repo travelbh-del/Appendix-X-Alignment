@@ -81,7 +81,7 @@ The Alignment Root of Trust (ARoT) mandates a "Sparse-Global" hybrid attention m
 #### 2. The Recursive Integrity Gate
 The hardware evaluates inference through a "Predict-and-Verify" loop:
 * **Predictive Prompt Score:** A pre-inference scan evaluates "Semantic Friction." High scores trigger the promotion of Global Anchors.
-* **Recursive Integrity Report:** Real-time monitoring of internal "Search Depth." High recursion (re-processing tokens) triggers an ARoT signal to expand the attention window or initiate failover.
+* **Recursive Integrity Report:** Real-time monitoring search depth and lineage propagation." High recursion (re-processing tokens) triggers an ARoT signal to expand the attention window or initiate failover.
 
 * Provenance & Lineage Identity:
 
