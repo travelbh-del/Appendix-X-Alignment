@@ -106,6 +106,7 @@ To mitigate systemic risk, the following invariants are enforced at both the **M
   ARoT Escalation Framework
 This framework governs system behavior following entry into Review State or failover to LKSS, ensuring controlled recovery, human oversight, and urgency of resolution.
 Escalation is governed by a composite control signal incorporating Prompt Drift Signal (PDS), Cumulative Drift Index (CDI), recurrence frequency, and elapsed resolution time.
+Escalation outcomes are enforced through ARoT, ensuring that all constraint adjustments, capability restrictions, and recovery transitions are deterministic and non-bypassable.
 
 Escalation progresses across defined levels:
 
@@ -121,6 +122,8 @@ To ensure the LKSS does not ingest "pre-poisoned" data during a failover, the Al
 • Direct Hardware Polling: The ARoT triggers a fresh, independent poll of all physical hardware sensors at the exact millisecond of the "Clean Break." This creates a Reference State that has never been processed by the recursive model.
 • Temporal Check (The "Look-Back"): The ARoT compares current sensor readings against a pre-failover history stored in secure, read-only memory. If the primary model's last reported state diverges from this hardware reality, the ARoT flags the primary's data as "Corrupted" and forces the LKSS to initialize from a Total Zero State.
 • Hash Verification: All data entering the LKSS must be cryptographically signed by the ARoT, confirming that the information originated from a hardware sensor and not a generative process.
+
+All LSKK records are populated exclusively with ARoT-certified provenance and temporal-identity bindings, ensuring audit integrity and non-repudiation.
 
 
 ### Architectural Principle
