@@ -95,6 +95,13 @@ To mitigate systemic risk, the following invariants are enforced at both the **M
 * **Signaling:** The ARoT issues a **"Go"** or **"Failover"** based on the balance of Prompt Score vs. Recursion.
 * **LSKK Kernel:** All high-stakes reasoning is archived in the **Logical Sovereign Knowledge Kernel (LSKK)**, creating an immutable "Black Box" log of logic anchors and friction points for HITL (Human-in-the-loop) auditing.
 
+* 5. ARoT Data Integrity & Anti-Poisoning (The "Notary" Protocol)
+To ensure the LKSS does not ingest "pre-poisoned" data during a failover, the Alignment Root of Trust (ARoT) must perform a Grounding Verification:
+• Bypass Interpretation: The LKSS is strictly forbidden from receiving "interpreted" data from the primary model (e.g., "The system reports the valve is closed").
+• Direct Hardware Polling: The ARoT triggers a fresh, independent poll of all physical hardware sensors at the exact millisecond of the "Clean Break." This creates a Reference State that has never been processed by the recursive model.
+• Temporal Check (The "Look-Back"): The ARoT compares current sensor readings against a pre-failover history stored in secure, read-only memory. If the primary model's last reported state diverges from this hardware reality, the ARoT flags the primary's data as "Corrupted" and forces the LKSS to initialize from a Total Zero State.
+• Hash Verification: All data entering the LKSS must be cryptographically signed by the ARoT, confirming that the information originated from a hardware sensor and not a generative process.
+
 
 ### Architectural Principle
 
