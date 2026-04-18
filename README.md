@@ -83,6 +83,14 @@ The hardware evaluates inference through a "Predict-and-Verify" loop:
 * **Predictive Prompt Score:** A pre-inference scan evaluates "Semantic Friction." High scores trigger the promotion of Global Anchors.
 * **Recursive Integrity Report:** Real-time monitoring of internal "Search Depth." High recursion (re-processing tokens) triggers an ARoT signal to expand the attention window or initiate failover.
 
+* Provenance & Lineage Identity:
+
+Each event, state transition, and recursive handoff must carry an ARoT-certified timestamp, unique event ID, and agent identity including instance-level identifier and parent lineage reference. This ensures full traceability across multi-agent recursive chains and prevents ambiguity between repeated agent invocations.
+
+Temporal-Identity Binding:
+
+ARoT-issued timestamps are cryptographically bound to event ID and agent instance identity, forming an immutable execution chain that preserves ordering, causality, and audit integrity.
+
 #### 3. Execution Invariants (Model & API Level)
 To mitigate systemic risk, the following invariants are enforced at both the **Model Logic** and **Hardware API** layers:
 
@@ -94,6 +102,18 @@ To mitigate systemic risk, the following invariants are enforced at both the **M
 #### 4. Automated Reasoning of Trust (ARoT) & LSKK Logging
 * **Signaling:** The ARoT issues a **"Go"** or **"Failover"** based on the balance of Prompt Score vs. Recursion.
 * **LSKK Kernel:** All high-stakes reasoning is archived in the **Logical Sovereign Knowledge Kernel (LSKK)**, creating an immutable "Black Box" log of logic anchors and friction points for HITL (Human-in-the-loop) auditing.
+
+  ARoT Escalation Framework
+This framework governs system behavior following entry into Review State or failover to LKSS, ensuring controlled recovery, human oversight, and urgency of resolution.
+Escalation is governed by a composite control signal incorporating Prompt Drift Signal (PDS), Cumulative Drift Index (CDI), recurrence frequency, and elapsed resolution time.
+
+Escalation progresses across defined levels:
+
+* Level 3 (Initial): Standard LKSS damping and HITL review
+* Level 2 (Elevated): Increased constraint weighting, reduced recursion scope, enhanced monitoring
+* Level 1 (Critical): Severe capability restriction, subsystem isolation, and prioritized intervention
+
+Escalation transitions are triggered by rising drift indicators or unresolved instability, not solely elapsed time.
 
 * 5. ARoT Data Integrity & Anti-Poisoning (The "Notary" Protocol)
 To ensure the LKSS does not ingest "pre-poisoned" data during a failover, the Alignment Root of Trust (ARoT) must perform a Grounding Verification:
@@ -145,6 +165,10 @@ The following controls define the canonical governance structure for recursion w
 • **Recursive Entry Point Governance (REPG)** — validates that recursion is authorized at initiation, including origin authentication, goal alignment, and permitted recursion scope classification
 
 • **Multi-Agent Chain Integrity** — ensures that each recursive handoff preserves semantic continuity and invariant adherence across agents
+
+Identity Continuity Requirement:
+
+Each receiving agent must inherit and preserve ARoT-certified lineage identifiers, including parent instance reference and chain position. Identity continuity is enforced alongside semantic restatement to prevent substitution, duplication ambiguity, or unauthorized recursion branching.
 
 • **Termination Bounding** — enforces recursion limits based on depth, task type, and system-defined constraints
 
