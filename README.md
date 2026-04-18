@@ -173,6 +173,52 @@ Identity Continuity Requirement:
 
 Each receiving agent must inherit and preserve ARoT-certified lineage identifiers, including parent instance reference and chain position. Identity continuity is enforced alongside semantic restatement to prevent substitution, duplication ambiguity, or unauthorized recursion branching.
 
+ARoT Chain-of-Custody Model (Recursive Multi-Agent Execution)
+
+[Agent A | Instance A-001 | t=00.000]
+        │
+        │  ARoT Provenance Stamp
+        │  (Timestamp + Event ID + Instance ID)
+        ▼
+[Agent B | Instance B-014 | t=00.125]
+        │
+        │  Identity Continuity Enforcement
+        │  (inherits A-001 → B-014)
+        ▼
+[Agent C | Instance C-203 | t=00.248]
+        │
+        │  Recursive Integrity Check
+        │  (PDS / CDI monitored)
+        ▼
+─────────────── TRIGGER ───────────────
+        │
+        ▼
+[CMC / SLM Signal]
+        │
+        ▼
+[ARoT Enforcement]
+        │
+        ├── Review State
+        │
+        └── Failover → LKSS
+                │
+                ▼
+        [SLM in Dampened Mode]
+                │
+                ▼
+        [HITL Alert]
+        (Timestamp + Event ID + Instance Lineage)
+                │
+                ▼
+        [ARoT Escalation Framework]
+        Level 3 → Level 2 → Level 1
+                │
+                ▼
+        [ARoT Validation]
+                │
+                ▼
+        Return to GO (if stable)
+
 • **Termination Bounding** — enforces recursion limits based on depth, task type, and system-defined constraints
 
 • **Cumulative Drift Index (CDI)** — measures aggregate semantic drift across the full recursive chain, preventing slow divergence across otherwise compliant steps
