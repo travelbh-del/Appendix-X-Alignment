@@ -1099,6 +1099,28 @@ If a user or a sub-process attempts to bypass the HRDR (High-Risk Domain Registr
 • Layer A (Model Level): The SLM detects the "Intent to Execute" and replaces the action with an "Advice Only" summary.
 • Layer B (API Level): Even if Layer A fails (e.g., via adversarial jailbreak), Invariant 17 serves as the logical justification for the hardware to trigger a Cold Failover (System Halt).
 
+## Inplementation Notes :
+
+High-speed environments require safety controls that operate at comparable latency.
+Independent validation enclaves (e.g., specialized smaller models or rule-based systems)
+can perform parallel, bounded checks that support pre-execution gating.
+Implementation Considerations
+In high-assurance environments, independent validation enclaves (e.g.,
+specialized or smaller models) may be used to provide pre-execution
+gating signals. These enclaves operate outside the primary model runtime
+and support cross-verification and anomaly detection.
+Final execution authority remains with ARoT. Enclave signals may
+contribute to a GO/NO-GO determination, but do not override invariant
+enforcement.
+In decision-support domains with significant human impact (e.g., medical,
+legal, or financial contexts), similar validation mechanisms may be applied
+to reduce the risk of acting on misaligned or false premises, particularly
+where outputs influence high-consequence decisions.
+Final authorization remains with ARoT, which enforces invariant-based GO/NO-GO decisions
+
+Pre-execution gating operates at machine speed; HITL remains active in escalation and review pathways.
+
+
 ## Final Statement
 
 > **Self-directed optimization is not inferred from language—it is measured as allocation of optimization effort.**
