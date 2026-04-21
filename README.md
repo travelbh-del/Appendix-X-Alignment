@@ -414,6 +414,24 @@ The Prompt Drift Signal (PDS) provides the measurable control input that links p
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/d35c09b9-8f9b-46ad-a8a8-d30d73768e4c" />
 *PDS threshold bands and composite signal structure used to drive control actions*
 
+#### HITL Escalation & Response Windows
+
+Human-in-the-loop (HITL) escalation operates as a parallel control layer to PDS-based system responses, defining required human intervention thresholds and response timing under elevated risk conditions.
+
+Escalation is triggered when system state enters Review or higher drift bands.
+
+| PDS Range | Escalation Level | Required Action | Response Window |
+|----------|------------------|-----------------|-----------------|
+| 0.41–0.60 | Review State      | Human review requested | Within operational cycle |
+| 0.61–0.80 | High Risk         | Mandatory human validation | Time-bound (e.g., seconds–minutes depending on domain) |
+| 0.81–1.00 | Critical          | Immediate escalation / halt or failover | Immediate (no autonomous continuation) |
+
+If no human response is received within the defined window:
+- ARoT enforces safe continuation via LKSS or constrained execution mode
+- System authority does not default to autonomous override
+
+This ensures that human authority is preserved without introducing operational deadlock under time-sensitive conditions.
+
 PSI (Proxy Substitution Index) operates as a pre-action signal within the PDS framework, contributing early detection of inference-level drift prior to observable output deviation.
 
 Elevated PSI conditions increase PDS sensitivity, enabling earlier activation of proportional control responses.
