@@ -57,6 +57,15 @@ ARoT operates below or alongside the model runtime and orchestration layer, not 
 • Isolation  
 ARoT executes in a protected domain (e.g., secure enclave, hypervisor layer, or dedicated control plane) such that model-generated outputs cannot modify or bypass it.
 
+Isolation Principle (Hard Boundary Condition)
+The Alignment Root of Trust (ARoT), Chiral Mirror Control (CMC), and supervisory SLM layers operate outside the model’s execution domain and are not addressable, writable, or influenceable by the model itself.
+
+These layers are logically and (where implemented) physically isolated, ensuring that enforcement, monitoring, and override capabilities remain non-bypassable under all runtime conditions.
+
+**Non-Bypassable Enforcement Boundary**
+
+All monitoring, reasoning, and enforcement functions operate outside the model’s execution domain, ensuring that no internal model behavior — including recursion, prompt injection, or emergent strategies — can override system-level constraints.
+
 • Deterministic Enforcement  
 ARoT enforces invariant constraints as binary conditions at runtime. Constraint violations trigger predefined control actions (weighting → review → damping → failover).
 
