@@ -107,9 +107,15 @@ The hardware evaluates inference through a "Predict-and-Verify" loop:
 * **Predictive Prompt Score:** A pre-inference scan evaluates "Semantic Friction." High scores trigger the promotion of Global Anchors.
 * **Recursive Integrity Report:** Real-time monitoring search depth and lineage propagation." High recursion (re-processing tokens) triggers an ARoT signal to expand the attention window or initiate failover.
 
-* Provenance & Lineage Identity:
+#### 3. Provenance & Lineage 
+Enforcement**
+Each event, state transition, and recursive handoff must carry an ARoT-certified timestamp, unique event ID, and agent identity (including instance-level identifier and parent lineage reference).
 
-Each event, state transition, and recursive handoff must carry an ARoT-certified timestamp, unique event ID, and agent identity including instance-level identifier and parent lineage reference. This ensures full traceability across multi-agent recursive chains and prevents ambiguity between repeated agent invocations.
+This ensures deterministic traceability across multi-agent recursive chains and eliminates ambiguity between repeated or parallel agent invocations.
+
+**Temporal-Identity Binding:**
+
+ARoT-issued timestamps are cryptographically bound to event ID and agent instance identity, forming an immutable execution chain that preserves causal ordering and lineage integrity across all system operations.
 
 Temporal-Identity Binding:
 
