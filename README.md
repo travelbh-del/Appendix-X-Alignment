@@ -31,6 +31,21 @@ This architecture enables a shift from reactive safety to pre-execution governan
 
 Appendix X is intended as a non-proprietary reference architecture for safe AI system design, offering a path toward enforceable alignment at scale without reliance on model-internal compliance.
 
+Appendix X introduces a runtime safety model based on three coordinated principles: 
+pre-execution constraints, parallel validation through independent enclaves, and 
+deterministic control enforced by an Alignment Root of Trust (ARoT).
+
+Rather than relying on continuous human-in-the-loop intervention, the framework 
+repositions human oversight to the definition of constraints (upstream) and the 
+audit of outcomes (downstream), while enforcing safety deterministically during execution.
+
+In high-speed environments, effective safety mechanisms must operate at comparable 
+latency. Independent validation enclaves (e.g., specialized smaller models or 
+rule-based systems) perform parallel, bounded checks that support pre-execution gating 
+without introducing prohibitive delay.
+
+Final authorization remains with ARoT, which enforces invariant-based GO/NO-GO 
+decisions independent of the primary model’s reasoning process.
 This framework is designed to preserve human authority, enforce bounded system behavior, and maintain safe operational continuity under increasing model capability.
 
 
