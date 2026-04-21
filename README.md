@@ -6,18 +6,26 @@ Alignment Control Architecture — Non-Proprietary Reference Model
 Appendix X introduces a governance architecture that shifts AI safety from policy-based enforcement to deterministic, runtime-enforced constraints at the infrastructure layer.
 
 Current frontier lab approaches (Anthropic, Google, OpenAI) primarily rely on:
-- Behavioral guidance  
-- Classifiers and monitoring systems  
-- Policy enforcement and contractual controls  
+
+• Behavioral guidance  
+• Classifiers and monitoring systems  
+• Policy enforcement and contractual controls  
 
 While effective for many use cases, these mechanisms remain:
-- Probabilistic  
-- Bypassable under adversarial pressure  
-- Dependent on post-hoc detection
-- A fifth control signal, the Proxy Substitution Index (PSI), operates inside the inference pass — detecting silent substitution of proxy objectives (coherence, plausibility) for grounded objectives before output is released. PSI is the pre-action trip wire; current industry safety mechanisms fire after the fact.
 
-Appendix X introduces a fundamentally different model:
-Appendix X addresses this gap through the Proxy Substitution Index (PSI) — an inference-level control signal that detects silent substitution of proxy objectives for grounded objectives mid-generation, operating within the Chiral Mirror Control layer before output exits the system.
+• Probabilistic  
+• Bypassable under adversarial pressure  
+• Dependent on post-hoc detection  
+
+Appendix X introduces a fundamentally different model.
+
+At its core is the Alignment Root of Trust (ARoT), a deterministic enforcement layer anchored at the lowest trusted execution boundary of the system. ARoT operates outside the model’s execution domain and governs what actions are permitted at runtime.
+
+Monitoring (CMC), supervisory reasoning (SLMs), and enforcement (ARoT) are structurally separated from the model and cannot be directly accessed, modified, or influenced by it. This establishes a non-bypassable enforcement boundary: models generate outputs, but system-level controls determine what is allowed to execute.
+
+A fifth control signal, the Proxy Substitution Index (PSI), operates inside the inference pass — detecting silent substitution of proxy objectives (coherence, plausibility) for grounded objectives before output is released. PSI functions as a pre-action trip wire, operating within the Chiral Mirror Control layer before output exits the system.
+
+In contrast, current industry safety mechanisms primarily act after generation. Appendix X shifts detection and control into the inference process itself, enabling pre-execution intervention and deterministic constraint enforcement.
 
 Alignment Root of Trust (ARoT) — a non-bypassable, architectural enforcement layer operating at runtime.
 ---
