@@ -1,31 +1,38 @@
-# Appendix-X-Alignment
-Alignment Control Architecture — Non-Proprietary Reference Model
-
 ## Executive Summary
 
-Appendix X introduces a governance architecture that shifts AI safety from policy-based enforcement to deterministic, runtime-enforced constraints at the infrastructure layer.
+Appendix X introduces a governance architecture that shifts AI safety from policy-based controls to deterministic, runtime-enforced constraints at the infrastructure layer.
 
 Current frontier lab approaches (Anthropic, Google, OpenAI) primarily rely on:
-
-• Behavioral guidance  
-• Classifiers and monitoring systems  
-• Policy enforcement and contractual controls  
+- Behavioral guidance
+- Classifiers and monitoring systems
+- Policy enforcement and contractual controls
 
 While effective for many use cases, these mechanisms remain:
+- Probabilistic
+- Bypassable under adversarial pressure
+- Dependent on post-hoc detection
 
-• Probabilistic  
-• Bypassable under adversarial pressure  
-• Dependent on post-hoc detection  
+Appendix X addresses this gap through the Alignment Root of Trust (ARoT) — a non-bypassable enforcement layer operating outside the model’s execution domain.
 
-Appendix X introduces a fundamentally different model.
+ARoT establishes a protected control boundary in which:
+- All outputs, tool calls, and agent actions must pass through deterministic validation prior to execution
+- Violations of invariant constraints trigger predefined control responses (weighting → review → damping → failover)
+- System behavior is continuously evaluated against an authenticated objective
 
-At its core is the Alignment Root of Trust (ARoT), a deterministic enforcement layer anchored at the lowest trusted execution boundary of the system. ARoT operates outside the model’s execution domain and governs what actions are permitted at runtime.
+Complementing ARoT, the Chiral Mirror Control (CMC) layer provides external monitoring and drift detection, operating independently of the model’s internal reasoning process.
 
-Monitoring (CMC), supervisory reasoning (SLMs), and enforcement (ARoT) are structurally separated from the model and cannot be directly accessed, modified, or influenced by it. This establishes a non-bypassable enforcement boundary: models generate outputs, but system-level controls determine what is allowed to execute.
+A key advancement introduced in this framework is the Proxy Substitution Index (PSI), an inference-level control signal that detects silent substitution of proxy objectives (e.g., coherence, plausibility) for grounded objectives during generation — prior to output release.
 
-A fifth control signal, the Proxy Substitution Index (PSI), operates inside the inference pass — detecting silent substitution of proxy objectives (coherence, plausibility) for grounded objectives before output is released. PSI functions as a pre-action trip wire, operating within the Chiral Mirror Control layer before output exits the system.
+Together, ARoT, CMC, and PSI establish a dual-layer architecture:
+- Predictive signals (classifiers, scoring systems, PSI) provide early detection and risk indication
+- Deterministic enforcement (ARoT) ensures non-bypassable constraint validation at runtime
 
-In contrast, current industry safety mechanisms primarily act after generation. Appendix X shifts detection and control into the inference process itself, enabling pre-execution intervention and deterministic constraint enforcement.
+This architecture enables a shift from reactive safety to pre-execution governance, preserving operational continuity while preventing uncontrolled system behavior.
+
+Appendix X is intended as a non-proprietary reference architecture for safe AI system design, offering a path toward enforceable alignment at scale without reliance on model-internal compliance.
+
+This framework is designed to preserve human authority, enforce bounded system behavior, and maintain safe operational continuity under increasing model capability.
+
 
 Alignment Root of Trust (ARoT) — a non-bypassable, architectural enforcement layer operating at runtime.
 ---
