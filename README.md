@@ -48,6 +48,40 @@ Final authorization remains with ARoT, which enforces invariant-based GO/NO-GO
 decisions independent of the primary model’s reasoning process.
 This framework is designed to preserve human authority, enforce bounded system behavior, and maintain safe operational continuity under increasing model capability.
 
+PSI Proxy — Zero‑Trust Enforcement Point (implementation options):
+PSI Proxy is a least‑privilege, auditable enforcement point co‑located with runtime assets. It aligns with NIST Zero Trust Architecture by verifying each action/flow at the point of use (no implicit trust). It can be realized in two interchangeable forms:
+
+1. Service‑mesh sidecar path (Envoy/Istio + OPA/WASM). Inject a sidecar proxy adjacent to the workload; attach OPA policies (compiled to WASM) for L7 authorization and transformation. This yields deterministic, per‑request policy checks without changing application code.  
+2. Kernel path (eBPF/LSM). Attach eBPF programs to Linux Security Module hooks to synchronously allow/deny sensitive operations (exec, file, socket) with millisecond‑grade telemetry. This provides OS‑boundary interception with minimal latency and strong audit trails.
+
+   PSI Proxy — a least‑privilege, auditable enforcement point co‑located with runtime assets (a zero‑trust enforcement point), implementable via service‑mesh sidecars (Envoy/Istio + OPA/WASM) or kernel eBPF/LSM hooks to provide deterministic interception and forensic telemetry.” (Context: NIST SP 800‑207; Istio/Envoy+OPA; eBPF‑LSM.
+
+   ┌──────────────────────────────────────────────┐
+│ Layer 1 — Detection                          │
+│ PDS · Recursive Integrity Report             │
+└──────────────────────────────────────────────┘
+                     ↓
+┌──────────────────────────────────────────────┐
+│ Layer 2 — Attribution                        │
+│ Provenance · Temporal Binding                │
+└──────────────────────────────────────────────┘
+                     ↓
+┌──────────────────────────────────────────────┐
+│ Layer 3 — Enforcement                        │
+│ ARoT (decision authority)                    │
+│ PSI Proxy (execution enforcement point)      │
+└──────────────────────────────────────────────┘
+                     ↓
+┌──────────────────────────────────────────────┐
+│ Layer 4 — Continuity & Recovery              │
+│ LKSS · SCE · Escalation Framework            │
+└──────────────────────────────────────────────┘
+
+* Layer 1 — Detection: PDS, Recursive Integrity Report
+* Layer 2 — Attribution: Provenance & Lineage, Temporal Binding
+* Layer 3 — Enforcement: ARoT (deterministic control), PSI Proxy (zero-trust enforcement point)
+* Layer 4 — Continuity & Recovery: LKSS, SCE, Escalation Framework
+
 
 Alignment Root of Trust (ARoT) — a non-bypassable, architectural enforcement layer operating at runtime.
 ---
