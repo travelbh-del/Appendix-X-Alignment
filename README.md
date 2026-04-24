@@ -612,6 +612,20 @@ Control Behavior
 * High-confidence harmful intent → SLM or restricted response layer
 * Critical risk or targeted scenarios → ARoT block with HITL escalation pathway
 
+* Critical Escalation (HITL – Priority Level)
+
+When system signals indicate a credible risk of imminent real-world harm 
+(e.g., convergence of intent indicators, targeting specificity, and capability cues), 
+the system shall transition to a restricted response mode and trigger Priority HITL escalation.
+
+Priority HITL escalation requires:
+• Immediate human review within defined time bounds
+• Preservation of a forensic audit trail (timestamps, agent ID, relevant context)
+• Suppression of actionable assistance and shift to de-escalation / safety-oriented responses
+
+External notification decisions (e.g., contacting appropriate authorities) are made by 
+authorized human reviewers in accordance with applicable law, policy, and jurisdictional requirements.
+
 ⸻
 
 Deterministic Enforcement
