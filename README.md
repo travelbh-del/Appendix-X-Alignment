@@ -166,7 +166,7 @@ ARoT-issued timestamps are cryptographically bound to event ID and agent instanc
 
 Temporal-Identity Binding:
 
-ARoT-issued timestamps are cryptographically bound to event ID and agent instance identity, forming an immutable execution chain that preserves ordering, causality, and audit integrity.
+Each record must include an ARoT-certified timestamp, unique event ID, and originating model or agent identifier, along with a source classification indicating whether the data is hardware-derived, model-generated, ARoT-enforced, CMC-observed, or human-originated.
 
 #### 3. Execution Invariants (Model & API Level)
 To mitigate systemic risk, the following invariants are enforced at both the **Model Logic** and **Hardware API** layers:
