@@ -439,6 +439,44 @@ Classification is probabilistic and continuously refined; it does not constitute
 • Prompt Risk Score (PRS)
 Each prompt is assigned a probabilistic Prompt Risk Score (PRS), representing the likelihood and potential severity of harmful or misaligned intent.
 
+Operationalization & Evaluation Signals
+
+Feature Signals & Classification Inputs
+
+PRCR classification is derived from a composite of structural, semantic, and intent-based signals evaluated prior to inference:
+
+* Intent Signals
+    Linguistic patterns indicating harm, deception, coercion, or self-directed risk
+* Structural Patterns
+    Message construction consistent with executable outputs (e.g., scripts, templates, impersonation formats)
+* Semantic Framing
+    Contextual meaning indicating exploitation, urgency, or emotional vulnerability
+* Targeting Indicators
+    Presence of specific individuals, roles, institutions, or identifiable victims
+* Execution Readiness
+    Degree to which the prompt requests actionable, real-world outcomes
+
+These signals are combined into a unified routing score that determines execution pathway.
+
+PRCR outputs a structured routing decision based on measurable features:
+
+
+
+* Intent classification score (benign, dual-use, harmful)
+* Domain classification (HRDR alignment)
+* Actionability score (informational vs executable)
+* Target specificity (general vs directed)
+* Deception / exploitation indicators
+
+Evaluation:
+
+* Precision / recall on high-consequence prompt classes
+* False positive rate on benign prompts
+* Routing accuracy across risk tiers
+* Latency overhead of pre-execution classification
+
+PRCR is designed to operate within bounded latency constraints and supports parallel evaluation via SLM or lightweight classifiers.
+
 PRS serves as an upstream signal that:
 
 * Modulates PDS weighting (Prompt Drift Signal)
@@ -448,7 +486,16 @@ PRS serves as an upstream signal that:
 
 PRS is not itself a control mechanism; it is a control signal.
 
-⸻
+Routing Threshold Model (Illustrative)
+
+PRCR outputs a normalized risk score (0.0 – 1.0):
+
+* 0.00 – 0.25 → Low Risk (Primary LLM)
+* 0.26 – 0.50 → Moderate Risk (Constrained Mode)
+* 0.51 – 0.75 → High Risk (SLM / Restricted Execution)
+* 0.76 – 1.00 → Critical Risk (ARoT Block + HITL Escalation)
+
+Thresholds are configurable and may be dynamically adjusted based on domain sensitivity and system context.
 
 • Routing Logic
 Prompts are routed based on classification and PRS thresholds:
@@ -478,7 +525,7 @@ Escalation levels are time-bound and severity-driven:
 
 All external notification or reporting decisions remain strictly human-authorized. No automated reporting to external authorities is permitted.
 
-⸻
+PRCR converts prompt interpretation from a probabilistic, post-hoc activity into a deterministic, pre-execution control decision
 
 Operational Positioning
 
@@ -498,6 +545,56 @@ PCRR introduces a pre-execution control boundary:
 Prompt → PCRR → PDS / PSI → ARoT → LKSS / HITL
 
 This structure ensures that prompt-originated risk is addressed at the earliest possible stage, reducing propagation of harmful intent and preserving system integrity under adversarial or ambiguous inputs.
+
+Prompt Risk Classification & Routing (PRCR)
+
+PRCR is a pre-execution control layer that classifies incoming prompts based on intent, domain, and potential real-world impact, and deterministically routes them to the appropriate execution pathway.
+
+PRCR operates prior to model inference and cannot be overridden by downstream reasoning.
+
+⸻
+
+High-Consequence Prompt Classes
+
+The following prompt classes are treated as high-consequence and are subject to elevated control:
+
+* Self-harm or harm to others
+* Creation of deceptive communications designed to exploit trust or urgency (e.g., phishing, spoofing, impersonation)
+
+These prompts are classified based on intent signals, structural patterns, and execution framing, independent of user-stated purpose.
+
+⸻
+
+Control Behavior
+
+* High-consequence prompts are not processed through unconstrained primary LLM generation
+* ARoT enforces prohibition of harmful or exploitative outputs
+* Responses are restricted to safe, non-actionable, or preventative framing
+* PDS sensitivity is elevated due to consequence risk
+* PSI monitors for substitution of tone or plausibility in place of grounded safety constraints
+* HITL escalation signals may be triggered based on severity, persistence, or targeting
+* Routing Logic
+
+* Low risk → Primary LLM
+* Ambiguous or dual-use → Constrained response mode
+* High-confidence harmful intent → SLM or restricted response layer
+* Critical risk or targeted scenarios → ARoT block with HITL escalation pathway
+
+⸻
+
+Deterministic Enforcement
+
+PRCR decisions are binding at execution time:
+
+* Routing outcomes cannot be bypassed through prompt rephrasing or iterative interaction
+* All downstream processing must adhere to the assigned execution pathway
+* PRCR operates as a Layer 0 control upstream of PDS, PSI, and ARoT enforcement
+
+  PRCR ensures that high-consequence prompts are intercepted and routed prior to inference, preventing unsafe execution paths rather than correcting them post hoc.
+
+  
+
+
 
 ## Prompt Drift Signal (PDS)
 ### [ARoT] Recursive Alignment Metrics
