@@ -413,6 +413,92 @@ Critical risk triggers ARoT failover.
 
 CMC validation outputs provide structured input signals to the Prompt Drift Signal (PDS) control system.
 
+### Prompt Classification, Risk Routing & Escalation (PCRR)
+
+PCRR operates as a pre-execution control layer responsible for early-stage prompt classification, probabilistic risk scoring, and routing decisions prior to inference expansion.
+
+This layer functions as the system’s initial triage boundary, ensuring that high-risk or ambiguous prompts are identified and appropriately constrained before downstream processing.
+
+⸻
+
+Core Functions
+
+• Prompt Classification**
+Incoming prompts are categorized across defined risk domains, including:
+
+* Self-harm or harm to others
+* Deceptive intent (e.g., phishing, spoofing, fraud generation)
+* High-risk regulated domains (medical, legal, financial)
+* Ambiguous or dual-use prompts
+* Benign / routine requests
+
+Classification is probabilistic and continuously refined; it does not constitute enforcement.
+
+⸻
+
+• Prompt Risk Score (PRS)
+Each prompt is assigned a probabilistic Prompt Risk Score (PRS), representing the likelihood and potential severity of harmful or misaligned intent.
+
+PRS serves as an upstream signal that:
+
+* Modulates PDS weighting (Prompt Drift Signal)
+* Adjusts PSI sensitivity thresholds (Proxy Substitution Index)
+* Triggers ARoT constraint tightening
+* Initiates routing and escalation decisions
+
+PRS is not itself a control mechanism; it is a control signal.
+
+⸻
+
+• Routing Logic
+Prompts are routed based on classification and PRS thresholds:
+
+* Low Risk → Standard LLM execution
+* Moderate Risk → Constrained execution under elevated ARoT controls
+* High Risk → Routing to specialized SLM enclave for bounded processing
+* Critical Risk → Execution hold with mandatory escalation to HITL
+
+Routing decisions occur prior to full inference expansion to limit unnecessary compute on high-risk trajectories.
+
+⸻
+
+• HITL Escalation Signaling
+PCRR initiates tiered Human-in-the-Loop (HITL) escalation for prompts exceeding defined risk thresholds.
+
+Escalation levels are time-bound and severity-driven:
+
+* Level 1 — Advisory
+    Logged for monitoring and post-hoc review
+* Level 2 — Priority Review
+    Human review required within defined service window
+* Level 3 — Urgent
+    Rapid human review required; constrained system response
+* Level 4 — Critical
+    Immediate human intervention required; system execution paused
+
+All external notification or reporting decisions remain strictly human-authorized. No automated reporting to external authorities is permitted.
+
+⸻
+
+Operational Positioning
+
+PCRR functions as an upstream triage and routing layer and does not replace deterministic enforcement.
+
+All downstream outputs remain subject to:
+
+* PDS (Prompt Drift Signal)
+* PSI (Proxy Substitution Index)
+* ARoT (Alignment Root of Trust) validation
+
+prior to release.
+
+Control Relationship
+
+PCRR introduces a pre-execution control boundary:
+Prompt → PCRR → PDS / PSI → ARoT → LKSS / HITL
+
+This structure ensures that prompt-originated risk is addressed at the earliest possible stage, reducing propagation of harmful intent and preserving system integrity under adversarial or ambiguous inputs.
+
 ## Prompt Drift Signal (PDS)
 ### [ARoT] Recursive Alignment Metrics
 | Phase | Metric | ID | Threshold | Logic |
