@@ -160,6 +160,20 @@ Each event, state transition, and recursive handoff must carry an ARoT-certified
 
 This ensures deterministic traceability across multi-agent recursive chains and eliminates ambiguity between repeated or parallel agent invocations.
 
+
+Temporal–Identity Binding (TIA Extension)
+
+All safety-relevant actions must be bound by ARoT to:
+– millisecond-precision timestamp
+– verified identity (human or non-human agent)
+– lineage/parent reference
+– unique transaction/event ID
+
+Temporal Intent Attribution (TIA) extends provenance by creating a high-fidelity, ordered record of intent and execution across recursive chains.
+
+Only ARoT may issue authoritative temporal and identity metadata.
+
+Model-asserted timestamps, identities, or event claims are non-authoritative unless verified and recorded by ARoT.
 **Temporal-Identity Binding:**
 
 ARoT-issued timestamps are cryptographically bound to event ID and agent instance identity, forming an immutable execution chain that preserves causal ordering and lineage integrity across all system operations.
