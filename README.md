@@ -701,6 +701,15 @@ Escalation is triggered when system state enters Review or higher drift bands.
 | 0.61–0.80 | High Risk         | Mandatory human validation | Time-bound (e.g., seconds–minutes depending on domain) |
 | 0.81–1.00 | Critical          | Immediate escalation / halt or failover | Immediate (no autonomous continuation) |
 
+Delta Wave (Recursive Drift Monitoring)
+
+Delta-based comparison is applied across recursive passes to measure divergence from the Authenticated Objective.
+
+This “Delta Wave” signal quantifies cumulative drift over time, enabling:
+– real-time detection of recursive misalignment
+– threshold-triggered escalation to Review State or ARoT enforcement
+
+Delta Wave integrates with PDS scoring to provide continuous, directional drift awareness.
 If no human response is received within the defined window:
 - ARoT enforces safe continuation via LKSS or constrained execution mode
 - System authority does not default to autonomous override
