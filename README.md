@@ -174,6 +174,7 @@ Temporal Intent Attribution (TIA) extends provenance by creating a high-fidelity
 Only ARoT may issue authoritative temporal and identity metadata.
 
 Model-asserted timestamps, identities, or event claims are non-authoritative unless verified and recorded by ARoT.
+
 **Temporal-Identity Binding:**
 
 ARoT-issued timestamps are cryptographically bound to event ID and agent instance identity, forming an immutable execution chain that preserves causal ordering and lineage integrity across all system operations.
@@ -182,6 +183,22 @@ Temporal-Identity Binding:
 
 Each record must include an ARoT-certified timestamp, unique event ID, and originating model or agent identifier, along with a source classification indicating whether the data is hardware-derived, model-generated, ARoT-enforced, CMC-observed, or human-originated.
 
+ARoT Enforcement Snapshot Requirement
+
+At any ARoT enforcement event (including pause, hold, failover, or rejection), the system must capture a deterministic snapshot of system state at the moment of intervention.
+
+This snapshot must include:
+– active objective / Authenticated Objective context
+– inference state indicators (bounded, non-sensitive representation)
+– agent identity and lineage position
+– active toolchain or execution context
+
+The snapshot is bound to the corresponding transaction/event ID and ARoT-issued timestamp and retained for:
+– forensic replay
+– audit validation
+– TEVV reconstruction
+
+Snapshot integrity must be tamper-evident and stored within ARoT-controlled logging infrastructure.
 #### 3. Execution Invariants (Model & API Level)
 To mitigate systemic risk, the following invariants are enforced at both the **Model Logic** and **Hardware API** layers:
 
