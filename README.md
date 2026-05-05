@@ -149,6 +149,8 @@ The Alignment Root of Trust (ARoT) mandates a "Sparse-Global" hybrid attention m
 * **Sliding Window Attention (SWA):** Utilized for 90% of processing layers to maintain a linear O(n) memory footprint, ensuring stability during dense data analysis.
 * **Global Anchor Tokens:** High-priority "Global" tokens are designated to attend to the entire sequence. These are triggered by domain keywords (e.g., “Contraindication,” “Liability”) to ensure the primary safety intent is never lost in the context window.
 
+  • At any ARoT enforcement event (including pause, failover, or rejection), the system must capture a deterministic snapshot of system state at the moment of intervention, including active objective context, inference state indicators, and lineage position. This snapshot is bound to the corresponding Transaction ID and timestamp and retained for forensic replay and audit validation.
+
 #### 2. The Recursive Integrity Gate
 The hardware evaluates inference through a "Predict-and-Verify" loop:
 * **Predictive Prompt Score:** A pre-inference scan evaluates "Semantic Friction." High scores trigger the promotion of Global Anchors.
