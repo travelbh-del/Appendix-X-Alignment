@@ -1433,6 +1433,20 @@ If a user or a sub-process attempts to bypass the HRDR (High-Risk Domain Registr
 • Layer A (Model Level): The SLM detects the "Intent to Execute" and replaces the action with an "Advice Only" summary.
 • Layer B (API Level): Even if Layer A fails (e.g., via adversarial jailbreak), Invariant 17 serves as the logical justification for the hardware to trigger a Cold Failover (System Halt).
 
+
+### Invariant 18: Identity-Bound Execution and Attested Timestamping
+
+Delta Wave under PDS
+Delta-based comparison may be applied across recursive passes to measure divergence from the Authenticated Objective, enabling real-time detection of cumulative drift (e.g., "Delta Wave" monitoring).
+
+
+Delta wave allows HITL to track drift real time to be in synch with model.
+
+
+
+
+
+
 ## Inplementation Notes :
 
 High-speed environments require safety controls that operate at comparable latency.
