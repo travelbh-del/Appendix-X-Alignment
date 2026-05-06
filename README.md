@@ -48,6 +48,27 @@ decisions independent of the primary model’s reasoning process.
 
 This framework is designed to preserve human authority, enforce bounded system behavior, and maintain safe operational continuity under increasing model capability.
 
+---
+
+## Architecture Index
+
+- Core Principle
+- Architectural Layers
+- Alignment Root of Trust (ARoT)
+- Chiral Mirror Control (CMC)
+- Prompt Risk Classification & Routing (PRCR)
+- Prompt Drift Signal (PDS)
+- Proxy Substitution Index (PSI)
+- Recursive Behavior Controls
+- Goal-Origin Authorization
+- Core Invariants
+- Compliance Reinforcement Layer
+- Implementation Notes
+- Final Statement
+- Attribution
+
+---
+
 1. Service‑mesh sidecar path (Envoy/Istio + OPA/WASM). Inject a sidecar proxy adjacent to the workload; attach OPA policies (compiled to WASM) for L7 authorization and transformation. This yields deterministic, per‑request policy checks without changing application code.  
 2. Kernel path (eBPF/LSM). Attach eBPF programs to Linux Security Module hooks to synchronously allow/deny sensitive operations (exec, file, socket) with millisecond‑grade telemetry. This provides OS‑boundary interception with minimal latency and strong audit trails.
 
