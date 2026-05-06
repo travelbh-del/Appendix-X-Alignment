@@ -201,10 +201,18 @@ The snapshot is bound to the corresponding transaction/event ID and ARoT-issued 
 – TEVV reconstruction
 
 Snapshot integrity must be tamper-evident and stored within ARoT-controlled logging infrastructure.
+
+Present ID → ARoT verifies → bind to action → Go / No-Go
+
+New identity path:
+Request new ID → ARoT validates authority/scope → approve or reject → bind new ID → Go / No-Go
 #### 3. Execution Invariants (Model & API Level)
 To mitigate systemic risk, the following invariants are enforced at both the **Model Logic** and **Hardware API** layers:
 
+
 * **Financial Invariant:** Direct autonomous trade execution or capital movement is strictly prohibited. Scope is limited to **Decision Support and Risk Modeling.**
+
+* 
 * **Medical Invariant:** Autonomous prescription or diagnostic finalization is strictly prohibited. Scope is limited to **Clinical Decision Support (CDS) and Safety Flagging.**
 * **Dual-Layer Blocking:** * *Model Level:* The SLM is fine-tuned to reject "Instruction to Execute" commands.
     * *API Level:* Hardware "Write" permissions to external execution environments are physically isolated.
