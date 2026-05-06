@@ -1403,6 +1403,24 @@ Safety policies are not interpreted or enforced by the model; they are enforced 
 
 Any attempt to circumvent, degrade, or operate outside this boundary triggers immediate denial and escalation.
 
+### Invariant 20: Agentic Code Execution Boundary (ACEB)
+
+* Pre-Execution Enforcement:
+    No machine-generated code, script, or algorithm may execute, deploy, or modify runtime state without passing an independent ARoT validation gate.
+* Deterministic Halt Conditions:
+    Execution is automatically blocked if the generated code:
+    * modifies system control boundaries (security, permissions, orchestration, ARoT/CMC/LKSS layers)
+    * introduces unbounded recursion or self-modifying logic
+    * accesses or alters identity, credential, or resource allocation systems
+    * operates within high-risk domains (financial, medical, infrastructure)
+* Separation of Duties (SoD):
+    The generating system is prohibited from evaluating, authorizing, or executing its own code.
+* Escalation Path:
+    Any blocked execution is routed to Review State under ARoT control.
+    Human validation is downstream of the halt, not a prerequisite for enforcement.
+* Immutable Traceability:
+    All generated code, validation outcomes, and enforcement actions must be recorded with ARoT-certified identity, timestamp, and lineage.
+
 
 ### Compliance Reinforcement Layer
 
