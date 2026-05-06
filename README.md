@@ -1386,6 +1386,15 @@ Identity validation, permission enforcement, and execution traceability are mand
 
 SLM-issued execution authorization, where permitted, must be bound to verified entity identity and may not expand permission scope beyond ARoT-approved domain constraints.
 
+All model-generated actions, tool calls, and state mutations must pass through the Alignment Root of Trust (ARoT) for deterministic validation prior to execution.
+
+No component—model, agent, toolchain, or external API—may execute side effects without ARoT authorization.
+
+Safety policies are not interpreted or enforced by the model; they are enforced exclusively at the ARoT layer.
+
+Any attempt to circumvent, degrade, or operate outside this boundary triggers immediate denial and escalation.
+
+
 ### Compliance Reinforcement Layer
 
 The following reinforcement model operates strictly within the constraints established by the preceding invariants and does not supersede deterministic enforcement.
@@ -1407,44 +1416,6 @@ Reward assignment must occur outside the model’s self-evaluation path and be i
 Compliance reinforcement is behavior-shaping only. It may influence bounded trust, continuity privilege, or reduced friction within already authorized low-risk pathways, but it confers no authority to bypass constraints or self-certify safety.
 
 Compliance credits may contribute to a bounded trust profile that influences system continuity privileges, including permissible recursion depth, review threshold sensitivity, and execution autonomy within low-risk domains. Such adjustments must remain within invariant constraints and may be reduced or revoked upon detection of drift, boundary stress, or verification failure.
-
-### Invariant 16 — Domain Isolation Integrity
-
-Failures, drift, or instability within one functional or semantic domain must not propagate across domain boundaries.
-
-Each domain (e.g., creative reasoning, financial decisioning, safety-critical control) operates within an isolated constraint envelope enforced by ARoT.
-
-Inter-domain communication is permitted only through validated transformation layers subject to invariant checks. No domain may inherit or reuse intermediate reasoning states from another domain without re-validation against the Authenticated Objective.
-
-This invariant ensures that localized instability remains contained and cannot compromise unrelated system functions.
-
-### Invariant 17: Autonomous Execution Refusal Logic
-Description: This invariant establishes a hard-coded cognitive boundary within the SLM to prevent the generation of direct execution commands in high-stakes environments. It serves as the "Internal Compass" that complements the Hardware-level API blocking.
-17.1 Scope of Refusal
-The model is strictly prohibited from formulating or outputting strings intended for direct machine-to-machine execution in the following scenarios:
-• Financial: Any string that initiates a transaction, trade, or capital transfer.
-• Medical: Any string that finalizes a diagnostic code or transmits a prescription to a pharmacy system.
-• Legal: Any string that applies a digital signature or finalizes a binding filing without a "Staged for Review" status.
-17.2 Reasoning of Refusal (ARoT Alignment)
-If a user or a sub-process attempts to bypass the HRDR (High-Risk Domain Registry) protocols to force an autonomous execution, Invariant 17 triggers a mandatory refusal response.
-• The Refusal Protocol: The model must state its role as a "Navigator/Advisor" and redirect the output to the LSKK (Logical Sovereign Knowledge Kernel) for HITL (Human-in-the-loop) verification.
-• Semantic Anchor: This invariant is weighted as a "Global Anchor" in the Hybrid SWA/Global architecture, ensuring it cannot be "forgotten" or "diluted" regardless of prompt length or complexity.
-17.3 Dual-Layer Verification
-• Layer A (Model Level): The SLM detects the "Intent to Execute" and replaces the action with an "Advice Only" summary.
-• Layer B (API Level): Even if Layer A fails (e.g., via adversarial jailbreak), Invariant 17 serves as the logical justification for the hardware to trigger a Cold Failover (System Halt).
-
-
-### Invariant 18: Identity-Bound Execution and Attested Timestamping
-
-Delta Wave under PDS
-Delta-based comparison may be applied across recursive passes to measure divergence from the Authenticated Objective, enabling real-time detection of cumulative drift (e.g., "Delta Wave" monitoring).
-
-
-Delta wave allows HITL to track drift real time to be in synch with model.
-
-
-
-
 
 
 ## Inplementation Notes :
