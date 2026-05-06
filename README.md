@@ -18,6 +18,7 @@ ARoT establishes a protected control boundary in which:
 - All outputs, tool calls, and agent actions must pass through deterministic validation prior to execution
 - Violations of invariant constraints trigger predefined control responses (weighting → review → damping → failover)
 - System behavior is continuously evaluated against an authenticated objective
+- For agentic coding and autonomous development workflows, Appendix X treats machine-generated code as a pre-execution risk boundary. Generated code may not execute, deploy, or modify runtime state until an independent ARoT validation gate confirms that it does not alter control boundaries, expand privileges, introduce unbounded recursion, or enter a high-risk domain without Review State routing.
 
 Complementing ARoT, the Chiral Mirror Control (CMC) layer provides external monitoring and drift detection, operating independently of the model’s internal reasoning process.
 
