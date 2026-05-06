@@ -20,9 +20,7 @@ ARoT establishes a protected control boundary in which:
 - System behavior is continuously evaluated against an authenticated objective
 - For agentic coding and autonomous development workflows, Appendix X treats machine-generated code as a pre-execution risk boundary. Generated code may not execute, deploy, or modify runtime state until an independent ARoT validation gate confirms that it does not alter control boundaries, expand privileges, introduce unbounded recursion, or enter a high-risk domain without Review State routing.
 
-Complementing ARoT, the Chiral Mirror Control (CMC) layer provides external monitoring and drift detection, operating independently of the model’s internal reasoning process.
-
-A key advancement introduced in this framework is the Proxy Substitution Index (PSI), an inference-level control signal that detects silent substitution of proxy objectives (e.g., coherence, plausibility) for grounded objectives during generation — prior to output release.
+Complementing ARoT, the Chiral Mirror Control (CMC) layer provides external monitoring and drift detection, operating independently of the model’s internal reasoning process.p
 
 Together, ARoT, CMC, and PSI establish a dual-layer architecture:
 - Predictive signals (classifiers, scoring systems, PSI) provide early detection and risk indication
@@ -535,7 +533,6 @@ These signals are combined into a unified routing score that determines executio
 PRCR outputs a structured routing decision based on measurable features:
 
 
-
 * Intent classification score (benign, dual-use, harmful)
 * Domain classification (HRDR alignment)
 * Actionability score (informational vs executable)
@@ -602,8 +599,7 @@ All external notification or reporting decisions remain strictly human-authorize
 PRCR converts prompt interpretation from a probabilistic, post-hoc activity into a deterministic, pre-execution control decision
 
 Operational Positioning
-
-PCRR functions as an upstream triage and routing layer and does not replace deterministic enforcement.
+PRCR functions as an upstream triage and routing layer and does not replace deterministic enforcement.
 
 All downstream outputs remain subject to:
 
